@@ -21,13 +21,15 @@ function App() {
             Entrez votre numéro de suivi pour connaître l'état de votre commande
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+         <div className="search-box">
+          <input
+           type="text"
+           placeholder="Ex : FR123456789"
+          />
+          <button>
+            Suivre
+          </button>
+         </div>
       </section>
 
       <div className="ticks"></div>

@@ -8,7 +8,12 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+<<<<<<< HEAD
+    <> 
+    <body>
+=======
     <>
+>>>>>>> parent of 33ad4d0 (change color)
         <section id="center">
         <div className="hero">
           <img src="images/logo-nopli.png" alt="Logo Nopli" width="350"></img>
@@ -30,7 +35,10 @@ function App() {
          </div>
          </section>
       <div className="ticks"></div>
-
+     <section id="next-steps">
+     </section>
+      <div> <h1> Progression du colis</h1>
+      </div>
         <div className="tracking-card">
 
       <div className="tracking-number">
@@ -74,6 +82,7 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+      </body>
     </>
   )
 }

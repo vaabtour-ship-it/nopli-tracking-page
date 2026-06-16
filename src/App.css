@@ -2,21 +2,33 @@
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
+  color: var(--accent);          /* Noir */
+  background: var(--accent-bg);  /* Gris clair */
   border: 2px solid transparent;
   transition: border-color 0.3s;
   margin-bottom: 24px;
 
   &:hover {
-    border-color: var(--accent-border);
+    border-color: var(--accent-border); /* Devient gris moyen au survol */
   }
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--accent);   /* Contour noir si sélectionné au clavier */
     outline-offset: 2px;
   }
 }
-
+body {
+  margin: 0;
+  padding: 0;
+  
+  min-height: 100vh;
+  
+  background-image: linear-gradient(
+    to right,       
+    #0055A4 0%,     
+    #0300a4 33.33%, 
+    #FFFFFF 33.33%, 
+  )
+}
 .hero {
   position: relative;
 
@@ -42,21 +54,23 @@
     z-index: 1;
     top: 34px;
     height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
   }
 
   .vite {
     z-index: 0;
-    top: 107px;
+    top: 100px;
     height: 26px;
     width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
   }
 }
 
 #center {
+<<<<<<< HEAD
+  background: rgb(7, 79, 213); 
+=======
+>>>>>>> parent of 33ad4d0 (change color)
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -72,7 +86,7 @@
 
 #next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border); /* Ligne grise */
   text-align: left;
 
   & > div {
@@ -96,7 +110,7 @@
 }
 
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--border); /* Ligne grise */
 
   @media (max-width: 1024px) {
     border-right: none;
@@ -116,10 +130,10 @@
   }
 
   a {
-    color: var(--text-h);
+    color: var(--text-h);          /* Liens en Noir */
     font-size: 16px;
     border-radius: 6px;
-    background: var(--social-bg);
+    background: var(--social-bg);  /* Fond gris très clair */
     display: flex;
     padding: 6px 12px;
     align-items: center;
@@ -128,7 +142,7 @@
     transition: box-shadow 0.3s;
 
     &:hover {
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow);   /* Ombre légère au survol */
     }
     .button-icon {
       height: 18px;
@@ -154,7 +168,12 @@
 }
 
 #spacer {
+<<<<<<< HEAD
+   background: rgb(235, 2, 41); 
+  height: 120px;
+=======
   height: 88px;
+>>>>>>> parent of 33ad4d0 (change color)
   border-top: 1px solid var(--border);
   @media (max-width: 1024px) {
     height: 48px;
@@ -175,7 +194,7 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: var(--border) ;
   }
   &::after {
     right: 0;

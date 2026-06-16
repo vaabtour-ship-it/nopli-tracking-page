@@ -18,7 +18,7 @@ function App() {
         <div>
           <h1>Suivre mon colis</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Entrez votre numéro de suivi pour connaître l'état de votre commande
           </p>
         </div>
         <button

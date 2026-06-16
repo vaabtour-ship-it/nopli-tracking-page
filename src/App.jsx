@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <section id="center">
+        <section id="center">
         <div className="hero">
           <img src="images/logo-nopli.png" alt="Logo Nopli" width="350"></img>
         </div>
@@ -28,10 +28,9 @@ function App() {
             Suivre
           </button>
          </div>
-      </section>
+         </section>
       <div className="ticks"></div>
 
-      <section id="next-steps">
         <div className="tracking-card">
 
       <div className="tracking-number">
@@ -72,7 +71,6 @@ function App() {
 
     </div>
         
-      </section>
 
       <div className="ticks"></div>
       <section id="spacer"></section>

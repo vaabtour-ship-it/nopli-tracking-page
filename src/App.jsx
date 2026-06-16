@@ -11,7 +11,7 @@ function App() {
     <>
       <section id="center">
         <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
+          <img src="images/logo-nopli.png" alt="Logo Nopli" width="350"></img>
         </div>
         <div>
           <h1>Suivre mon colis</h1>

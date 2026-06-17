@@ -15,33 +15,33 @@ function TrackingResult() {
       title: "Suivi de votre commande",
       subtitle: "Chaque pièce est confectionnée avec soin dans nos ateliers lozériens.",
       labelNum: "Numéro de suivi Atelier :",
-      step1: "Confection en cours",
+      step1: "Commande validée",
       step2: "Contrôle qualité & Emballage",
       step3: "En cours d'acheminement",
       step4: "Livré chez vous",
-      status: "Votre colis a quitté Florac. Il est actuellement pris en charge par notre transporteur écoresponsable."
+      status: "Votre colis a quitté le centre de tri. Il est actuellement pris en charge par notre transporteur écoresponsable."
     },
     en: {
       back: "← Back to the Workshop",
       title: "Track your order",
       subtitle: "Each piece is carefully crafted in our workshop in Lozère.",
       labelNum: "Atelier Tracking Number:",
-      step1: "Crafting in progress",
+      step1: "Order Verified",
       step2: "Quality check & Packaging",
       step3: "In transit",
       step4: "Delivered to you",
-      status: "Your parcel has left Florac. It is currently handled by our eco-responsible carrier."
+      status: "Your package has left the sorting center. It is currently handled by our eco-responsible carrier."
     },
     es: {
       back: "← Volver al Taller",
       title: "Seguimiento de su pedido",
       subtitle: "Cada pieza está cuidadosamente confeccionada en nuestro taller de Lozère.",
       labelNum: "Número de seguimiento:",
-      step1: "Confección en curso",
+      step1: "Pedido Verificado",
       step2: "Control de calidad y embalaje",
       step3: "En tránsito",
       step4: "Entregado",
-      status: "Su paquete ha salido de Florac. Actualmente está en manos de nuestro transportista eco-responsable."
+      status: "Tu paquete ha salido del centro de clasificación. Actualmente está en manos de nuestro transportista eco-responsable."
     }
   };
 

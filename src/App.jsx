@@ -42,7 +42,7 @@ const translations = {
     btnSearch: "Pista",
     alertEmpty: "Por favor, ingresa un número de seguimiento.",
     btnBack: "← Volver a buscar",
-    progressTitle: "El seguimiento de tu paquete",
+    progressTitle: "Vista previa de su pedido",
     trackingNum: "Número de seguimiento:",
     step1: "1. Pedido recibido",
     step2: "2. Enviada",
@@ -77,7 +77,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app-container">
       <div className="language-selector">
         <button className={lang === 'fr' ? 'active' : ''} onClick={() => setLang('fr')}>🇫🇷 FR</button>
         <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>🇬🇧 EN</button>
@@ -152,7 +152,7 @@ function App() {
         </div>
 
       </section>
-    </>
+    </div>
   )
 }
 

@@ -1,29 +1,47 @@
-/* Le conteneur principal avec le dégradé gris/noir/blanc */
+/* 1. On applique le dégradé unique ici sur toute la page HTML/BODY */
+/* Le symbole * cible absolument TOUS les éléments pour enlever les marges et bordures parasites */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000000 0%, #666666 50%, #ffffff 100%);
+  background-attachment: fixed; 
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 #center {
-  background: linear-gradient(135deg, #1a1a1a 0%, #666666 50%, #f5f5f5 100%);
+  background: transparent; 
   display: flex;
   flex-direction: column;
   gap: 25px;
   place-content: center;
   place-items: center;
   flex-grow: 1;
-  min-height: 100vh; /* Pour que le dégradé prenne tout l'écran */
+  width: 100%; 
+  max-width: 650px; 
   padding: 40px 20px;
 }
 
-/* Nouveau bloc pour isoler la recherche et mettre le texte en noir */
 .search-container {
-  background: rgba(255, 255, 255, 0.85); /* Fond blanc semi-transparent pour lire le texte noir sur le dégradé */
+  background: rgba(255, 255, 255, 0.85);
   padding: 30px;
   border-radius: 12px;
   width: 100%;
-  max-width: 650px; /* Aligne et élargit la zone */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   box-sizing: border-box;
 }
 
-/* Force les textes de la recherche en noir */
 .search-text h1, 
 .search-text p {
   color: #000000 !important;
@@ -35,7 +53,6 @@
   opacity: 0.8;
 }
 
-/* La Search Box AGGrandie */
 .search-box {
   display: flex;
   gap: 10px;
@@ -43,11 +60,10 @@
   margin-top: 20px;
 }
 
-/* L'input de recherche plus grand */
 .search-box input {
   flex: 1;
-  padding: 15px 20px; /* Augmente la hauteur et l'espace interne */
-  font-size: 18px; /* Écrit plus gros */
+  padding: 15px 20px;
+  font-size: 18px;
   border: 2px solid #ccc;
   border-radius: 8px;
   outline: none;
@@ -59,12 +75,11 @@
   border-color: #333;
 }
 
-/* Le bouton "Suivre" plus grand */
 .btn-suivre {
-  padding: 15px 35px; /* Bouton beaucoup plus large et haut */
+  padding: 15px 35px;
   font-size: 18px;
   font-weight: bold;
-  background-color: #000000; /* Bouton noir pour aller avec le thème */
+  background-color: #000000;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -77,10 +92,9 @@
 }
 
 .btn-suivre:active {
-  transform: scale(0.98); /* Petit effet d'enfoncement au clic */
+  transform: scale(0.98);
 }
 
-/* --- Reste de votre CSS pour la carte de suivi (inchangé mais nettoyé des ticks/spacer) --- */
 .hero {
   position: relative;
 }
@@ -91,7 +105,6 @@
   padding: 24px;
   border-radius: 8px;
   width: 100%;
-  max-width: 650px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   box-sizing: border-box;
 }
@@ -105,7 +118,7 @@
 
 .progress-bar {
   background: #4caf50;
-  width: 75%; /* Exemple de progression */
+  width: 75%;
   height: 100%;
   border-radius: 4px;
 }
@@ -134,7 +147,7 @@
 }
 
 .step:last-child .circle {
-  background: #ccc; /* Étape non générée */
+  background: #ccc;
 }
 
 .status {
@@ -152,7 +165,7 @@
     width: 100%;
   }
 }
-/* Positionnement de la barre de langues */
+
 .language-selector {
   position: absolute;
   top: 20px;
@@ -162,12 +175,7 @@
   gap: 10px;
 }
 
-/* 1. On cache les cases de boutons radio d'origine */
-.language-selector input[type="radio"] {
-  display: none;
-}
 
-/* 2. Style de base des labels (tes nouveaux boutons) */
 .language-selector button {
   background: #333333;
   color: white;
@@ -178,18 +186,16 @@
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
-  user-select: none; /* Évite la sélection de texte au double clic */
+  user-select: none;
 }
 
 .language-selector button:hover {
   background: #444444;
 }
 
-/* 3. Style du bouton de la langue actuellement SELECTIONNÉE (:checked) */
-/* Le symbole "+" cible le label qui est juste après l'input coché */
-.language-selector input[type="radio"]:checked + label {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
+.language-selector button.active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }

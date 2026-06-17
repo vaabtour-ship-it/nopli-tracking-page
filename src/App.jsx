@@ -9,34 +9,33 @@ function App() {
 
   return (
     <>
-      {/* Tout est maintenant regroupé dans cette unique section qui aura le dégradé */}
       <section id="center">
         
-        {/* --- PARTIE 1 : RECHERCHE --- */}
-        <div className="hero">
-          {/* Vous pouvez insérer une image ici si besoin : <img src={heroImg} alt="Hero" /> */}
-        </div>
-        
-        <div>
-          <h1>Suivre mon colis</h1>
-          <p>
-            Entrez votre numéro de suivi pour connaître l'état de votre commande
-          </p>
+        {/* --- BLOC RECHERCHE AGRANDI ET TEXTES EN NOIR --- */}
+        <div className="search-container">
+          <div className="hero"></div>
+          
+          <div className="search-text">
+            <h1>Suivre mon colis</h1>
+            <p>
+              Entrez votre numéro de suivi pour connaître l'état de votre commande
+            </p>
+          </div>
+
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Ex : FR123456789"
+            />
+            <button className="btn-suivre">
+              Suivre
+            </button>
+          </div>
         </div>
 
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Ex : FR123456789"
-          />
-          <button>
-            Suivre
-          </button>
-        </div>
-
-        {/* --- PARTIE 2 : RÉSULTATS (SUIVI) --- */}
-        <div style={{ marginTop: '40px' }}> {/* Optionnel : ajoute un peu d'espace entre les deux blocs */}
-          <h1>Progression de votre colis</h1>
+        {/* --- PARTIE RÉSULTATS (SUIVI) --- */}
+        <div style={{ marginTop: '40px' }}>
+          <h1 style={{ color: '#ffffff' }}>Progression de votre colis</h1> {/* Laissé en blanc pour contraster avec le fond sombre */}
         </div>
 
         <div className="tracking-card">

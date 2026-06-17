@@ -42,7 +42,18 @@ function TrackingResult() {
       step3: "En tránsito",
       step4: "Entregado",
       status: "Tu paquete ha salido del centro de clasificación. Actualmente está en manos de nuestro transportista eco-responsable."
-    }
+    },
+    it: {
+      back: "← Ritorno all'Officina",
+      title: "Tracciamento del tuo ordine",
+      subtitle: "Ogni pezzo è realizzato con cura nei nostri laboratori della Lozère.",
+      labelNum: "Numero di tracciamento Officina :",
+      step1: "Ordine confermato",
+      step2: "Controllo qualità & Confezionamento",
+      step3: "In transito",
+      step4: "Consegnato a casa tua",
+      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere ecologico."
+    },
   };
 
   const t = content[currentLang] || content.fr;
@@ -154,7 +165,7 @@ function TrackingResult() {
             marginTop: '30px',
             textAlign: 'left'
           }}>
-            🧵 <strong>Maison fondée en 1892 :</strong> {t.status}
+            🧵 <strong>House founded in 1892 :</strong> {t.status}
           </div>
 
         </div>

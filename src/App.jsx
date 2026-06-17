@@ -15,42 +15,41 @@ const translations = {
     btnBack: "← Retour à la recherche",
     progressTitle: "Progression de votre colis",
     trackingNum: "Numéro de suivi :",
-    step1: "1. Commande reçue",
-    step2: "2. Expédiée",
-    step3: "3. En transit",
-    step4: "4. Livrée",
     statusText: "Votre colis est actuellement en transit vers sa destination."
   },
   en: {
     title: "Track your parcel",
     subtitle: "Enter your tracking number to know the status of your order",
-    placeholder: "E.g.: FR123456789",
+    placeholder: "E.g.: EN123456789",
     btnSearch: "Track",
     alertEmpty: "Please enter a tracking number.",
     btnBack: "← Back to search",
     progressTitle: "Your parcel progression",
     trackingNum: "Tracking number:",
-    step1: "1. Order received",
-    step2: "2. Shipped",
-    step3: "3. In transit",
-    step4: "4. Delivered",
     statusText: "Your parcel is currently in transit to its destination."
   },
   es: {
     title: "Rastrear mi paquete",
     subtitle: "Ingresa tu número de seguimiento para saber el estado de tu pedido",
-    placeholder: "E.g.: FR123456789",
+    placeholder: "E.g.: ES123456789",
     btnSearch: "Pista",
     alertEmpty: "Por favor, ingresa un número de seguimiento.",
     btnBack: "← Volver a buscar",
     progressTitle: "Vista previa de su pedido",
     trackingNum: "Número de seguimiento:",
-    step1: "1. Pedido recibido",
-    step2: "2. Enviada",
-    step3: "3. En tránsito",
-    step4: "4. Entregada",
     statusText: "Tu paquete está actualmente en tránsito hacia su destino."
-  }
+  },
+  it: {
+    title: "Segui il mio pacco",
+    subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
+    placeholder: "E.g. : IT123456789",
+    btnSearch: "Seguire",
+    alertEmpty: "Per favore inserisci un numero di tracciamento.",
+    btnBack: "← Torna alla ricerca",
+    progressTitle: "Avanzamento del tuo pacco",
+    trackingNum: "Numero di tracciamento :",
+    statusText: "Votre colis est actuellement en transit vers sa destination."
+  },
 };
 
 function App() {
@@ -104,6 +103,7 @@ function App() {
         <button className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>FR</button>
         <button className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>EN</button>
         <button className={lang === 'es' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'es')}>ES</button>
+        <button className={lang === 'it' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'it')}>IT</button>
       </div>
       
       <section id="center">
@@ -131,44 +131,12 @@ function App() {
         </div>
 
         {/* --- PARTIE RÉSULTATS (Aperçu sur l'accueil) --- */}
-        <div style={{ marginTop: '40px' }}>
-          <h1 style={{ color: '#ffffff' }}>{t.progressTitle}</h1>
-        </div>
 
         <div className="tracking-card">
           <div className="tracking-number">
             {t.trackingNum} {trackingNumber || "FR123456789"}
           </div>
 
-          <div className="progress">
-            <div className="progress-bar"></div>
-          </div>
-
-          <div className="steps">
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>{t.step1}</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>{t.step2}</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>{t.step3}</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">4</div>
-              <p>{t.step4}</p>
-            </div>
-          </div>
-
-          <div className="status">
-            📦 {t.statusText}
-          </div>
         </div>
 
       </section>

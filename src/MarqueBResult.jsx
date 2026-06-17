@@ -42,11 +42,21 @@ function MarqueBResult() {
       step3: "En Tránsito",
       step4: "Entregado / Misión Cumplida",
       status: "El paquete ha salido de nuestro centro logístico central. Entrega exprés activada."
-    }
+    },
+    it: {
+      back: "← Ritorno all'Hub",
+      title: "Stato della spedizione",
+      subtitle: "Il tuo equipaggiamento Spider sta arrivando alla tua zona di lancio.",
+      labelNum: "Codice di tracciabilità SPIDER :",
+      step1: "Comando Validato",
+      step2: "Preparazione e Confezionamento",
+      step3: "Spedito/In Transito",
+      step4: "Raggiungiti/Obiettivo Raggiunto",
+      status: "Il pacco è uscito dal nostro centro logistico principale. Consegna espressa abilitata."
+    },
   };
 
   const t = content[currentLang] || content.fr;
-
   return (
     <div className="app-container">
       <section id="center">

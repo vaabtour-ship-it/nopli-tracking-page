@@ -152,3 +152,44 @@
     width: 100%;
   }
 }
+/* Positionnement de la barre de langues */
+.language-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+/* 1. On cache les cases de boutons radio d'origine */
+.language-selector input[type="radio"] {
+  display: none;
+}
+
+/* 2. Style de base des labels (tes nouveaux boutons) */
+.language-selector button {
+  background: #333333;
+  color: white;
+  border: 1px solid #555555;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  user-select: none; /* Évite la sélection de texte au double clic */
+}
+
+.language-selector button:hover {
+  background: #444444;
+}
+
+/* 3. Style du bouton de la langue actuellement SELECTIONNÉE (:checked) */
+/* Le symbole "+" cible le label qui est juste après l'input coché */
+.language-selector input[type="radio"]:checked + label {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

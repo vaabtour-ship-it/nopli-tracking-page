@@ -1,17 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [trackingNumber, setTrackingNumber] = useState('');
+
+  const handleSearch = () => {
+    if (!trackingNumber.trim()) {
+      alert('Veuillez entrer un numéro de suivi valide.');
+      return;
+    }
+
+    const urlSuivi = `https://www.laposte.fr/outils/suivre-un-envoi?code=${trackingNumber}`;
+
+    window.open(urlSuivi, '_blank');
+  };
 
   return (
     <>
       <section id="center">
         
-        {/* --- BLOC RECHERCHE AGRANDI ET TEXTES EN NOIR --- */}
         <div className="search-container">
           <div className="hero"></div>
           
@@ -26,21 +34,23 @@ function App() {
             <input
               type="text"
               placeholder="Ex : FR123456789"
+              value={trackingNumber}
+              onChange={(e) => setTrackingNumber(e.target.value)}
             />
-            <button className="btn-suivre">
+            
+            <button className="btn-suivre" onClick={handleSearch}>
               Suivre
             </button>
           </div>
         </div>
 
-        {/* --- PARTIE RÉSULTATS (SUIVI) --- */}
         <div style={{ marginTop: '40px' }}>
-          <h1 style={{ color: '#ffffff' }}>Progression de votre colis</h1> {/* Laissé en blanc pour contraster avec le fond sombre */}
+          <h1 style={{ color: '#ffffff' }}>Aperçu rapide du colis</h1>
         </div>
 
         <div className="tracking-card">
           <div className="tracking-number">
-            Numéro de suivi : FR123456789
+            Numéro de suivi affiché : {trackingNumber || "FR123456789"}
           </div>
 
           <div className="progress">
@@ -48,29 +58,14 @@ function App() {
           </div>
 
           <div className="steps">
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>1. Commande reçue</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>2. Expédiée</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">✓</div>
-              <p>3. En transit</p>
-            </div>
-
-            <div className="step">
-              <div className="circle">4</div>
-              <p>4. Livrée</p>
-            </div>
+            <div className="step"><div className="circle">✓</div><p>1. Reçue</p></div>
+            <div className="step"><div className="circle">✓</div><p>2. Expédiée</p></div>
+            <div className="step"><div className="circle">✓</div><p>3. En transit</p></div>
+            <div className="step"><div className="circle">4</div><p>4. Livrée</p></div>
           </div>
 
           <div className="status">
-            📦 Votre colis est actuellement en transit vers sa destination.
+            📦 Entrez un numéro pour ouvrir la page officielle de livraison.
           </div>
         </div>
 

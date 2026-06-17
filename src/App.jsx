@@ -8,9 +8,10 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    < >
+    <>
         <section id="center">
         <div className="hero">
+          <img src="images/logo-nopli.png" alt="Logo Nopli" width="350"></img>
         </div>
         <div>
           <h1>Suivre mon colis</h1>
@@ -21,7 +22,7 @@ function App() {
          <div className="search-box">
           <input
            type="text"
-           placeholder="Ex : 123456789"
+           placeholder="Ex : FR123456789"
           />
           <button>
             Suivre
@@ -29,12 +30,13 @@ function App() {
          </div>
          </section>
       <div className="ticks"></div>
-     
+
         <div className="tracking-card">
 
       <div className="tracking-number">
+        Numéro de suivi : FR123456789
       </div>
-<div><h1> Progression de votre commande</h1></div>
+
       <div className="progress">
         <div className="progress-bar"></div>
       </div>
@@ -43,22 +45,22 @@ function App() {
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>1. Commande reçue</p>
+          <p>Commande reçue</p>
         </div>
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>2.Expédiée</p>
+          <p>Expédiée</p>
         </div>
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>3. En transit</p>
+          <p>En transit</p>
         </div>
 
         <div className="step">
           <div className="circle">4</div>
-          <p>4. Livrée</p>
+          <p>Livrée</p>
         </div>
 
       </div>
@@ -72,9 +74,8 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
-    
-   </>
+    </>
   )
 }
 
- export default App
+export default App

@@ -78,13 +78,23 @@ function App() {
       return;
     }
     
-    // 1. Sauvegarde le numéro en mémoire locale pour la page d'après
     localStorage.setItem('trackingNumber', trackingNumber);
-    // 2. Sauvegarde la langue actuelle pour que le résultat soit traduit
     localStorage.setItem('appLang', lang);
+
+    // CONDITION 1 : Si le numéro contient "31" -> On va sur la page Tuffery
+    if (trackingNumber.includes('31')) {
+      navigate('/suivi');
+    } 
     
-    // 3. Redirection instantanée vers ta page "/suivi"
-    navigate('/suivi');
+    // CONDITION 2 : Si le numéro contient "99" -> On va sur la page de la Marque B
+    else if (trackingNumber.includes('07')) {
+      navigate('/marque-b');
+    } 
+    
+    // Si aucun des deux
+    else {
+      alert("Numéro de suivi non reconnu.");
+    }
   };
 
   return (

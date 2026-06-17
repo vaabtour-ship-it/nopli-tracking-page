@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
 import './App.css'
 
-// 1. Dictionnaire contenant les traductions (Français et Anglais)
 const translations = {
   fr: {
     title: "Suivre mon colis",
@@ -32,113 +34,122 @@ const translations = {
     step3: "3. In transit",
     step4: "4. Delivered",
     statusText: "Your parcel is currently in transit to its destination."
+  },
+  es: {
+    title: "Rastrear mi paquete",
+    subtitle: "Ingresa tu número de seguimiento para saber el estado de tu pedido",
+    placeholder: "E.g.: FR123456789",
+    btnSearch: "Pista",
+    alertEmpty: "Por favor, ingresa un número de seguimiento.",
+    btnBack: "← Volver a buscar",
+    progressTitle: "El seguimiento de tu paquete",
+    trackingNum: "Número de seguimiento:",
+    step1: "1. Pedido recibido",
+    step2: "2. Enviada",
+    step3: "3. En tránsito",
+    step4: "4. Entregada",
+    statusText: "Tu paquete está actualmente en tránsito hacia su destino."
   }
 };
 
 function App() {
+  const [count, setCount] = useState(0)
+  
+  // 1. On utilise cet état pour stocker ce que l'utilisateur écrit
   const [trackingNumber, setTrackingNumber] = useState('');
   const [isSearched, setIsSearched] = useState(false);
-  
-  // 2. État pour la langue active ('fr' par défaut)
   const [lang, setLang] = useState('fr');
 
-  // Raccourci pour récupérer les textes de la langue choisie
   const t = translations[lang];
 
+  // 2. Cette fonction ouvre le suivi de La Poste avec le bon numéro
   const handleSearch = () => {
     if (!trackingNumber.trim()) {
-      alert(t.alertEmpty); // Alerte traduite
+      alert(t.alertEmpty);
       return;
     }
+    
+    // Ouvre le site de La Poste dans un nouvel onglet avec le numéro tapé
+    const urlLaPoste = `https://www.laposte.fr/outils/suivre-un-envoi?code=${trackingNumber}`;
+    window.open(urlLaPoste, '_blank');
+    
     setIsSearched(true);
-  };
-
-  const handleGoBack = () => {
-    setIsSearched(false);
-    setTrackingNumber('');
   };
 
   return (
     <>
-      {/* 3. Boutons de changement de langue en haut de l'écran */}
       <div className="language-selector">
         <button className={lang === 'fr' ? 'active' : ''} onClick={() => setLang('fr')}>🇫🇷 FR</button>
         <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>🇬🇧 EN</button>
+        <button className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>🇪🇸 ES</button>
       </div>
-
+      
       <section id="center">
         
-        {/* ÉCRAN DE RECHERCHE */}
-        {!isSearched ? (
-          <div className="search-container">
-            <div className="hero"></div>
-            
-            <div className="search-text">
-              <h1>{t.title}</h1>
-              <p>{t.subtitle}</p>
+        {/* --- BLOC RECHERCHE --- */}
+        <div className="search-container">
+          <div className="hero"></div>
+          
+          <div className="search-text">
+            <h1>{t.title}</h1>
+            <p>{t.subtitle}</p>
+          </div>
+
+          <div className="search-box">
+            {/* AJOUT : value et onChange pour écouter le texte tapé */}
+            <input
+              type="text"
+              placeholder={t.placeholder}
+              value={trackingNumber}
+              onChange={(e) => setTrackingNumber(e.target.value)}
+            />
+            {/* AJOUT : onClick pour déclencher la redirection */}
+            <button className="btn-suivre" onClick={handleSearch}>
+              {t.btnSearch}
+            </button>
+          </div>
+        </div>
+
+        {/* --- PARTIE RÉSULTATS --- */}
+        <div style={{ marginTop: '40px' }}>
+          <h1 style={{ color: '#ffffff' }}>{t.progressTitle}</h1>
+        </div>
+
+        <div className="tracking-card">
+          <div className="tracking-number">
+            {t.trackingNum} {trackingNumber || "FR123456789"}
+          </div>
+
+          <div className="progress">
+            <div className="progress-bar"></div>
+          </div>
+
+          <div className="steps">
+            <div className="step">
+              <div className="circle">✓</div>
+              <p>{t.step1}</p>
             </div>
 
-            <div className="search-box">
-              <input
-                type="text"
-                placeholder={t.placeholder}
-                value={trackingNumber}
-                onChange={(e) => setTrackingNumber(e.target.value)}
-              />
-              <button className="btn-suivre" onClick={handleSearch}>
-                {t.btnSearch}
-              </button>
+            <div className="step">
+              <div className="circle">✓</div>
+              <p>{t.step2}</p>
+            </div>
+
+            <div className="step">
+              <div className="circle">✓</div>
+              <p>{t.step3}</p>
+            </div>
+
+            <div className="step">
+              <div className="circle">4</div>
+              <p>{t.step4}</p>
             </div>
           </div>
-        ) : (
-          /* ÉCRAN DE SUIVI (RÉSULTATS) */
-          <div className="tracking-page-container">
-            
-            <div style={{ marginBottom: '20px', textAlign: 'left', width: '100%', maxWidth: '650px' }}>
-              <button className="btn-retour" onClick={handleGoBack}>
-                {t.btnBack}
-              </button>
-            </div>
 
-            <div style={{ marginBottom: '20px' }}>
-              <h1 style={{ color: '#ffffff', margin: 0 }}>{t.progressTitle}</h1>
-            </div>
-
-            <div className="tracking-card">
-              <div className="tracking-number">
-                {t.trackingNum} <strong>{trackingNumber}</strong>
-              </div>
-
-              <div className="progress">
-                <div className="progress-bar"></div>
-              </div>
-
-              <div className="steps">
-                <div className="step">
-                  <div className="circle">✓</div>
-                  <p>{t.step1}</p>
-                </div>
-                <div className="step">
-                  <div className="circle">✓</div>
-                  <p>{t.step2}</p>
-                </div>
-                <div className="step">
-                  <div className="circle">✓</div>
-                  <p>{t.step3}</p>
-                </div>
-                <div className="step">
-                  <div className="circle gray">4</div>
-                  <p>{t.step4}</p>
-                </div>
-              </div>
-
-              <div className="status">
-                📦 {t.statusText}
-              </div>
-            </div>
-
+          <div className="status">
+            📦 {t.statusText}
           </div>
-        )}
+        </div>
 
       </section>
     </>

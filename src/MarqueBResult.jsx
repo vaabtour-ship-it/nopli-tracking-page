@@ -54,6 +54,17 @@ function MarqueBResult() {
       step4: "Raggiungiti/Obiettivo Raggiunto",
       status: "Il pacco è uscito dal nostro centro logistico principale. Consegna espressa abilitata."
     },
+    de: {
+      back: "← Zurück zum Hub",
+      title: "Versandstatus",
+      subtitle: "Deine Spider-Ausrüstung ist auf dem Weg zu deiner Absprungszone.",
+      labelNum: "SPIDER-Tracking-Code :",
+      step1: "Validierte Reihenfolge",
+      step2: "Vorbereitung & Verpackung",
+      step3: "Versendet / Unterwegs",
+      step4: "Geliefert / Ziel erreicht",
+      status: "Das Paket hat unser Hauptlogistikzentrum verlassen. Expresszustellung aktiviert."
+    },
   };
 
   const t = content[currentLang] || content.fr;
@@ -107,7 +118,7 @@ function MarqueBResult() {
             }}>
               SPIDER
             </h2>
-            <p style={{ color: '#888892', fontSize: '14px', letterSpacing: '0.5px', margin: '0' }}>
+            <p style={{ color: '#0c0c0d', fontSize: '14px', letterSpacing: '0.5px', margin: '0' }}>
               {t.subtitle}
             </p>
           </div>
@@ -138,12 +149,12 @@ function MarqueBResult() {
           <div className="steps" style={{ marginTop: '30px', listStyle: 'none', padding: '0' }}>
             <div className="step" style={{ listStyleType: 'none' }}>
               <div className="circle" style={{ background: '#ff003c', color: '#fff', border: 'none', boxShadow: '0 0 8px #ff003c' }}>✓</div>
-              <p style={{ fontWeight: 'bold', color: '#ffffff', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step1}</p>
+              <p style={{ fontWeight: 'bold', color: '#ff003c', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step1}</p>
             </div>
 
             <div className="step" style={{ listStyleType: 'none' }}>
               <div className="circle" style={{ background: '#ff003c', color: '#fff', border: 'none', boxShadow: '0 0 8px #ff003c' }}>✓</div>
-              <p style={{ fontWeight: 'bold', color: '#ffffff', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step2}</p>
+              <p style={{ fontWeight: 'bold', color: '#ff003c', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step2}</p>
             </div>
 
             <div className="step" style={{ listStyleType: 'none' }}>
@@ -152,15 +163,15 @@ function MarqueBResult() {
             </div>
 
             <div className="step" style={{ listStyleType: 'none' }}>
-              <div className="circle" style={{ background: '#16161f', color: '#44444f', border: '1px solid #22222b' }}>4</div>
-              <p style={{ fontWeight: 'normal', color: '#555562', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step4}</p>
+              <div className="circle" style={{ background: '#ff003c', color: '#fff', border: 'none', boxShadow: '0 0 8px #ff003c' }}>4</div>
+              <p style={{ fontWeight: 'normal', color: '#ff003c', fontSize: '12px', marginTop: '10px', textTransform: 'uppercase' }}>{t.step4}</p>
             </div>
           </div>
 
           {/* Section Statut Militaire/Tech */}
           <div className="status" style={{ 
             background: 'rgba(255, 255, 255, 0.03)', 
-            color: '#d1d1d6', 
+            color: '#0e0d0d', 
             border: '1px dashed rgba(255, 255, 255, 0.1)', 
             borderRadius: '4px', 
             padding: '16px', 

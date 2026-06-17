@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // AJOUT : Pour la navigation interne
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom' 
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -20,7 +20,7 @@ const translations = {
   en: {
     title: "Track your parcel",
     subtitle: "Enter your tracking number to know the status of your order",
-    placeholder: "E.g.: EN123456789",
+    placeholder: "Ex : EN123456789",
     btnSearch: "Track",
     alertEmpty: "Please enter a tracking number.",
     btnBack: "← Back to search",
@@ -31,7 +31,7 @@ const translations = {
   es: {
     title: "Rastrear mi paquete",
     subtitle: "Ingresa tu número de seguimiento para saber el estado de tu pedido",
-    placeholder: "E.g.: ES123456789",
+    placeholder: "Ex : ES123456789",
     btnSearch: "Pista",
     alertEmpty: "Por favor, ingresa un número de seguimiento.",
     btnBack: "← Volver a buscar",
@@ -42,7 +42,7 @@ const translations = {
   it: {
     title: "Segui il mio pacco",
     subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
-    placeholder: "E.g. : IT123456789",
+    placeholder: "Ex : IT123456789",
     btnSearch: "Seguire",
     alertEmpty: "Per favore inserisci un numero di tracciamento.",
     btnBack: "← Torna alla ricerca",
@@ -50,27 +50,48 @@ const translations = {
     trackingNum: "Numero di tracciamento :",
     statusText: "Votre colis est actuellement en transit vers sa destination."
   },
+  de: {
+    title: "Mein Paket verfolgen",
+    subtitle: "Gib deine Sendungsnummer ein, um den Status deiner Bestellung zu erfahren",
+    placeholder: "Ex : DE123456789",
+    btnSearch: "Folgen",
+    alertEmpty: "Bitte gib eine Sendungsnummer ein.",
+    btnBack: "← Zurück zur Suche",
+    progressTitle: "Fortschritt Ihres Pakets",
+    trackingNum: "Sendungsnummer :",
+    statusText: "Ihr Paket ist gerade auf dem Weg zu seinem Ziel."
+  },
 };
 
 function App() {
-  const [count, setCount] = useState(0)
   const [trackingNumber, setTrackingNumber] = useState('');
-  const [isSearched, setIsSearched] = useState(false);
   const [lang, setLang] = useState('fr');
+  
+  // AJOUT : Initialisation de l'état du mode sombre depuis le stockage local
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem('theme') === 'dark'
+  );
 
   const t = translations[lang];
-  
-  // AJOUT : Initialisation du système de redirection vers ta nouvelle page
   const navigate = useNavigate();
 
-  // MODIFICATION : On change la langue et on la mémorise pour la page suivante
+  // AJOUT : Gestionnaire d'effet pour appliquer/retirer la classe CSS du mode sombre
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+
   const changeLanguage = (e, newLang) => {
     e.preventDefault();
     setLang(newLang);
     localStorage.setItem('appLang', newLang); 
   };
 
-  // MODIFICATION : Gère la redirection locale vers ton autre page créée à côté
   const handleSearch = () => {
     if (!trackingNumber.trim()) {
       alert(t.alertEmpty);
@@ -80,17 +101,14 @@ function App() {
     localStorage.setItem('trackingNumber', trackingNumber);
     localStorage.setItem('appLang', lang);
 
-    // CONDITION 1 : Si le numéro contient "31" -> On va sur la page Tuffery
+    // CONDITION 1 : Si le numéro contient "31" -> Page Tuffery
     if (trackingNumber.includes('31')) {
       navigate('/suivi');
     } 
-    
-    // CONDITION 2 : Si le numéro contient "99" -> On va sur la page de la Marque B
+    // CONDITION 2 : Si le numéro contient "07" -> Page Spider (Marque B)
     else if (trackingNumber.includes('07')) {
       navigate('/marque-b');
     } 
-    
-    // Si aucun des deux
     else {
       alert("Numéro de suivi non reconnu.");
     }
@@ -98,12 +116,38 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* MODIFICATION : Boutons nettoyés et sécurisés avec la classe .active */}
+      
+      {/* AJOUT : Bouton Switch Mode Sombre / Mode Clair */}
+      <button 
+        onClick={() => setDarkMode(!darkMode)}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          left: '20px',
+          padding: '10px 16px',
+          borderRadius: '20px',
+          border: '1px solid var(--text-color, #1d2d44)',
+          background: 'var(--card-bg, #ffffff)',
+          color: 'var(--text-color, #1d2d44)',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          zIndex: 1000,
+          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+          fontSize: '14px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}
+      >
+        {darkMode ? '🌙 Dark' : '☀️ Light'}
+      </button>
+
       <div className="language-selector">
         <button className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>FR</button>
         <button className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>EN</button>
         <button className={lang === 'es' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'es')}>ES</button>
         <button className={lang === 'it' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'it')}>IT</button>
+        <button className={lang === 'de' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'de')}>DE</button>
       </div>
       
       <section id="center">
@@ -130,13 +174,11 @@ function App() {
           </div>
         </div>
 
-        {/* --- PARTIE RÉSULTATS (Aperçu sur l'accueil) --- */}
-
+        {/* --- PARTIE RÉSULTATS --- */}
         <div className="tracking-card">
           <div className="tracking-number">
             {t.trackingNum} {trackingNumber || "FR123456789"}
           </div>
-
         </div>
 
       </section>

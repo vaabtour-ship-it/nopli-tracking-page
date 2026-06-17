@@ -1,5 +1,45 @@
 /* 1. On applique le dégradé unique ici sur toute la page HTML/BODY */
 /* Le symbole * cible absolument TOUS les éléments pour enlever les marges et bordures parasites */
+/* Couleurs par défaut : Mode Clair */
+/* Variables de couleurs en Mode Clair (par défaut) */
+:root {
+  --bg-color: #f7f5f0;
+  --text-color: #1d2d44;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+}
+
+/* Variables de couleurs en Mode Sombre (quand la classe est active) */
+.dark-mode {
+  --bg-color: #0f0f14;
+  --text-color: #f3f4f6;
+  --card-bg: #171721;
+  --input-bg: #1f1f2e;
+}
+
+/* Application dynamique des couleurs sur l'ensemble du site */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 2s ease, color 2s ease;
+}
+.search-container{
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modifie tes classes existantes pour utiliser ces variables */
+.tracking-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+}
 html, body {
   margin: 0;
   padding: 0;

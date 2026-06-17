@@ -54,6 +54,17 @@ function TrackingResult() {
       step4: "Consegnato a casa tua",
       status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere ecologico."
     },
+    de: {
+      back: "← Zurück zur Werkstatt",
+      title: "Verfolgung Ihrer Bestellung",
+      subtitle: "Jedes Stück wird sorgfältig in unseren Werkstätten in der Lozère gefertigt.",
+      labelNum: "Werkstatt-Trackingnummer :",
+      step1: "Bestellung bestätigt",
+      step2: "Qualitätskontrolle & Verpackung",
+      step3: "Auf dem Weg",
+      step4: "Zu Ihnen geliefert",
+      status: "Ihr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem umweltfreundlichen Versanddienstleister bearbeitet.."
+    },
   };
 
   const t = content[currentLang] || content.fr;

@@ -57,6 +57,7 @@
 }
 
 #center {
+  background: red;
   display: flex;
   flex-direction: column;
   gap: 25px;

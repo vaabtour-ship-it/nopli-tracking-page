@@ -11,7 +11,6 @@ function App() {
     <>
         <section id="center">
         <div className="hero">
-          <img src="images/logo-nopli.png" alt="Logo Nopli" width="350"></img>
         </div>
         <div>
           <h1>Suivre mon colis</h1>
@@ -30,7 +29,7 @@ function App() {
          </div>
          </section>
       <div className="ticks"></div>
-
+       <div><h1> Progression de votre colis</h1></div>
         <div className="tracking-card">
 
       <div className="tracking-number">
@@ -45,22 +44,22 @@ function App() {
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>Commande reçue</p>
+          <p>1. Commande reçue</p>
         </div>
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>Expédiée</p>
+          <p>2. Expédiée</p>
         </div>
 
         <div className="step">
           <div className="circle">✓</div>
-          <p>En transit</p>
+          <p>3. En transit</p>
         </div>
 
         <div className="step">
           <div className="circle">4</div>
-          <p>Livrée</p>
+          <p>4. Livrée</p>
         </div>
 
       </div>

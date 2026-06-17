@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom' // AJOUT : Pour la navigation interne
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -54,34 +55,45 @@ const translations = {
 
 function App() {
   const [count, setCount] = useState(0)
-  
-  // 1. On utilise cet état pour stocker ce que l'utilisateur écrit
   const [trackingNumber, setTrackingNumber] = useState('');
   const [isSearched, setIsSearched] = useState(false);
   const [lang, setLang] = useState('fr');
 
   const t = translations[lang];
+  
+  // AJOUT : Initialisation du système de redirection vers ta nouvelle page
+  const navigate = useNavigate();
 
-  // 2. Cette fonction ouvre le suivi de La Poste avec le bon numéro
+  // MODIFICATION : On change la langue et on la mémorise pour la page suivante
+  const changeLanguage = (e, newLang) => {
+    e.preventDefault();
+    setLang(newLang);
+    localStorage.setItem('appLang', newLang); 
+  };
+
+  // MODIFICATION : Gère la redirection locale vers ton autre page créée à côté
   const handleSearch = () => {
     if (!trackingNumber.trim()) {
       alert(t.alertEmpty);
       return;
     }
     
-    // Ouvre le site de La Poste dans un nouvel onglet avec le numéro tapé
-    const urlLaPoste = `https://www.laposte.fr/outils/suivre-un-envoi?code=${trackingNumber}`;
-    window.open(urlLaPoste, '_blank');
+    // 1. Sauvegarde le numéro en mémoire locale pour la page d'après
+    localStorage.setItem('trackingNumber', trackingNumber);
+    // 2. Sauvegarde la langue actuelle pour que le résultat soit traduit
+    localStorage.setItem('appLang', lang);
     
-    setIsSearched(true);
+    // 3. Redirection instantanée vers ta page "/suivi"
+    navigate('/suivi');
   };
 
   return (
     <div className="app-container">
+      {/* MODIFICATION : Boutons nettoyés et sécurisés avec la classe .active */}
       <div className="language-selector">
-        <button className={lang === 'fr' ? 'active' : ''} onClick={() => setLang('fr')}>🇫🇷 FR</button>
-        <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>🇬🇧 EN</button>
-        <button className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>🇪🇸 ES</button>
+        <button className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>FR</button>
+        <button className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>EN</button>
+        <button className={lang === 'es' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'es')}>ES</button>
       </div>
       
       <section id="center">
@@ -96,21 +108,19 @@ function App() {
           </div>
 
           <div className="search-box">
-            {/* AJOUT : value et onChange pour écouter le texte tapé */}
             <input
               type="text"
               placeholder={t.placeholder}
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
             />
-            {/* AJOUT : onClick pour déclencher la redirection */}
             <button className="btn-suivre" onClick={handleSearch}>
               {t.btnSearch}
             </button>
           </div>
         </div>
 
-        {/* --- PARTIE RÉSULTATS --- */}
+        {/* --- PARTIE RÉSULTATS (Aperçu sur l'accueil) --- */}
         <div style={{ marginTop: '40px' }}>
           <h1 style={{ color: '#ffffff' }}>{t.progressTitle}</h1>
         </div>

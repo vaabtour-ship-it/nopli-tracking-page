@@ -3,7 +3,7 @@
 /* Couleurs par défaut : Mode Clair */
 /* Variables de couleurs en Mode Clair (par défaut) */
 :root {
-  --bg-color: #f7f5f0;
+  --bg-color: #b8b2a4;
   --text-color: #1d2d44;
   --card-bg: #ffffff;
   --input-bg: #ffffff;
@@ -11,19 +11,19 @@
 
 /* Variables de couleurs en Mode Sombre (quand la classe est active) */
 .dark-mode {
-  --bg-color: #0f0f14;
-  --text-color: #f3f4f6;
-  --card-bg: #171721;
-  --input-bg: #1f1f2e;
+  --bg-color: linear-gradient(180deg, #000000 0%, #666666 50%, #ffffff 100%);
+  --text-color: #000000;
+  --card-bg: #d9d9d9;
+  --input-bg: #1f1818;
 }
 
 /* Application dynamique des couleurs sur l'ensemble du site */
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 2s ease, color 2s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.search-container{
+.app-container{
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -73,18 +73,18 @@ html, body {
 }
 
 .search-container {
-  background: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(180deg, #989696 0%, #c3bcbc 50%, #ffffff 100%);
   padding: 30px;
   border-radius: 12px;
   width: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(87, 81, 81, 0.2);
   text-align: center;
   box-sizing: border-box;
 }
 
 .search-text h1, 
 .search-text p {
-  color: #000000 !important;
+  color: #0b0b0b !important;
   margin-bottom: 15px;
 }
 
@@ -140,7 +140,7 @@ html, body {
 }
 
 .tracking-card {
-  background: white;
+  background: linear-gradient(180deg, #ffffff 0%, #a49a9a 50%, #989696 100%);
   color: #333;
   padding: 24px;
   border-radius: 8px;

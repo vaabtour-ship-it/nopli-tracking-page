@@ -20,7 +20,7 @@ const translations = {
   en: {
     title: "Track your parcel",
     subtitle: "Enter your tracking number to know the status of your order",
-    placeholder: "Ex : EN123456789",
+    placeholder: "Ex : FR123456789",
     btnSearch: "Track",
     alertEmpty: "Please enter a tracking number.",
     btnBack: "← Back to search",
@@ -31,7 +31,7 @@ const translations = {
   es: {
     title: "Rastrear mi paquete",
     subtitle: "Ingresa tu número de seguimiento para saber el estado de tu pedido",
-    placeholder: "Ex : ES123456789",
+    placeholder: "Ex : FR123456789",
     btnSearch: "Pista",
     alertEmpty: "Por favor, ingresa un número de seguimiento.",
     btnBack: "← Volver a buscar",
@@ -42,7 +42,7 @@ const translations = {
   it: {
     title: "Segui il mio pacco",
     subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
-    placeholder: "Ex : IT123456789",
+    placeholder: "Ex : FR123456789",
     btnSearch: "Seguire",
     alertEmpty: "Per favore inserisci un numero di tracciamento.",
     btnBack: "← Torna alla ricerca",
@@ -53,7 +53,7 @@ const translations = {
   de: {
     title: "Mein Paket verfolgen",
     subtitle: "Gib deine Sendungsnummer ein, um den Status deiner Bestellung zu erfahren",
-    placeholder: "Ex : DE123456789",
+    placeholder: "Ex : FR123456789",
     btnSearch: "Folgen",
     alertEmpty: "Bitte gib eine Sendungsnummer ein.",
     btnBack: "← Zurück zur Suche",
@@ -139,7 +139,7 @@ function App() {
           gap: '8px'
         }}
       >
-        {darkMode ? '🌙 Dark' : '☀️ Light'}
+        {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
 
       <div className="language-selector">

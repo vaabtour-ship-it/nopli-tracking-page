@@ -12,7 +12,7 @@
 /* Variables de couleurs en Mode Sombre (quand la classe est active) */
 .dark-mode {
   --bg-color: linear-gradient(180deg, #000000 0%, #666666 50%, #ffffff 100%);
-  --text-color: #000000;
+  --text-color: #ffffff;
   --card-bg: #d9d9d9;
   --input-bg: #1f1818;
 }

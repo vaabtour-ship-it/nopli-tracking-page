@@ -71,8 +71,7 @@ function App() {
 
   const t = translations[lang];
   const navigate = useNavigate();
-
-  // Effet pour appliquer la classe du mode sombre sur le body
+  
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');

@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom' 
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 const translations = {
@@ -67,7 +64,7 @@ function App() {
   const [trackingNumber, setTrackingNumber] = useState('');
   const [lang, setLang] = useState('fr');
   
-  // AJOUT : Initialisation de l'état du mode sombre depuis le stockage local
+  // Initialisation du mode sombre depuis le localStorage
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('theme') === 'dark'
   );
@@ -75,7 +72,7 @@ function App() {
   const t = translations[lang];
   const navigate = useNavigate();
 
-  // AJOUT : Gestionnaire d'effet pour appliquer/retirer la classe CSS du mode sombre
+  // Effet pour appliquer la classe du mode sombre sur le body
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -92,6 +89,7 @@ function App() {
     localStorage.setItem('appLang', newLang); 
   };
 
+  // Logique de recherche corrigée et ordonnée
   const handleSearch = () => {
     if (!trackingNumber.trim()) {
       alert(t.alertEmpty);
@@ -101,11 +99,17 @@ function App() {
     localStorage.setItem('trackingNumber', trackingNumber);
     localStorage.setItem('appLang', lang);
 
-    if (trackingNumber.includes('31')) {
-      navigate('/suivi');
+    if (trackingNumber.includes('0731')) {
+      navigate('/marque-b');
     } 
+    else if (trackingNumber.includes('3107')) {
+      navigate('/suivi');
+    }
     else if (trackingNumber.includes('07')) {
       navigate('/marque-b');
+    } 
+    else if (trackingNumber.includes('31')) {
+      navigate('/suivi');
     } 
     else {
       alert("Numéro de suivi non reconnu.");
@@ -115,7 +119,7 @@ function App() {
   return (
     <div className="app-container">
       
-      {/* AJOUT : Bouton Switch Mode Sombre / Mode Clair */}
+      {/* Bouton Switch Mode Sombre / Mode Clair */}
       <button 
         onClick={() => setDarkMode(!darkMode)}
         style={{
@@ -134,12 +138,14 @@ function App() {
           fontSize: '14px',
           display: 'flex',
           alignItems: 'center',
-          gap: '8px'
+          gap: '8px',
+          transition: 'all 0.3s ease'
         }}
       >
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
 
+      {/* Sélecteur de langue */}
       <div className="language-selector">
         <button className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>FR</button>
         <button className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>EN</button>

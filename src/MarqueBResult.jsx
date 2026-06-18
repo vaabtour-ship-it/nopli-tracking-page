@@ -171,7 +171,7 @@ function MarqueBResult() {
           {/* Section Statut Militaire/Tech */}
           <div className="status" style={{ 
             background: 'rgba(255, 255, 255, 0.03)', 
-            color: '#0e0d0d', 
+            color: '#ffffff', 
             border: '1px dashed rgba(255, 255, 255, 0.1)', 
             borderRadius: '4px', 
             padding: '16px', 

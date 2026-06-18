@@ -101,11 +101,9 @@ function App() {
     localStorage.setItem('trackingNumber', trackingNumber);
     localStorage.setItem('appLang', lang);
 
-    // CONDITION 1 : Si le numéro contient "31" -> Page Tuffery
     if (trackingNumber.includes('31')) {
       navigate('/suivi');
     } 
-    // CONDITION 2 : Si le numéro contient "07" -> Page Spider (Marque B)
     else if (trackingNumber.includes('07')) {
       navigate('/marque-b');
     } 

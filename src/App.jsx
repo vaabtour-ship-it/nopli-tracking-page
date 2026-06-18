@@ -145,13 +145,17 @@ function App() {
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
 
-      {/* Sélecteur de langue */}
-      <div className="language-selector">
-        <button className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>FR</button>
-        <button className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>EN</button>
-        <button className={lang === 'es' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'es')}>ES</button>
-        <button className={lang === 'it' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'it')}>IT</button>
-        <button className={lang === 'de' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'de')}>DE</button>
+      <div className="language-dropdown">
+        <button className="dropdown-btn">
+          🌐 {lang.toUpperCase()} ▾
+        </button>
+        <ul className="dropdown-content">
+          <li><a href="#" className={lang === 'fr' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'fr')}>Français</a></li>
+          <li><a href="#" className={lang === 'en' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'en')}>English</a></li>
+          <li><a href="#" className={lang === 'es' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'es')}>Español</a></li>
+          <li><a href="#" className={lang === 'it' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'it')}>Italiano</a></li>
+          <li><a href="#" className={lang === 'de' ? 'active' : ''} onClick={(e) => changeLanguage(e, 'de')}>Deutsch</a></li>
+        </ul>
       </div>
       
       <section id="center">
@@ -175,13 +179,6 @@ function App() {
             <button className="btn-suivre" onClick={handleSearch}>
               {t.btnSearch}
             </button>
-          </div>
-        </div>
-
-        {/* --- PARTIE RÉSULTATS --- */}
-        <div className="tracking-card">
-          <div className="tracking-number">
-            {t.trackingNum} {trackingNumber || "FR123456789"}
           </div>
         </div>
 

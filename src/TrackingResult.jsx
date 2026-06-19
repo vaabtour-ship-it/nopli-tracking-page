@@ -22,7 +22,7 @@ function TrackingResult() {
       status: "Votre colis a quitté le centre de tri. Il est actuellement pris en charge par notre transporteur écoresponsable."
     },
     en: {
-      back: "← Back to the Workshop",
+      back: "← Back to the last page",
       title: "Track your order",
       subtitle: "Each piece is carefully crafted in our workshop in Lozère.",
       labelNum: "Atelier Tracking Number:",
@@ -33,7 +33,7 @@ function TrackingResult() {
       status: "Your package has left the sorting center. It is currently handled by our eco-responsible carrier."
     },
     es: {
-      back: "← Volver al Taller",
+      back: "← Volver a la página anterior",
       title: "Seguimiento de su pedido",
       subtitle: "Cada pieza está cuidadosamente confeccionada en nuestro taller de Lozère.",
       labelNum: "Número de seguimiento:",
@@ -44,7 +44,7 @@ function TrackingResult() {
       status: "Tu paquete ha salido del centro de clasificación. Actualmente está en manos de nuestro transportista eco-responsable."
     },
     it: {
-      back: "← Ritorno all'Officina",
+      back: "← Torna all'ultima pagina",
       title: "Tracciamento del tuo ordine",
       subtitle: "Ogni pezzo è realizzato con cura nei nostri laboratori della Lozère.",
       labelNum: "Numero di tracciamento Officina :",
@@ -55,7 +55,7 @@ function TrackingResult() {
       status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere ecologico."
     },
     de: {
-      back: "← Zurück zur Werkstatt",
+      back: "← Zurück zur letzten Seite",
       title: "Verfolgung Ihrer Bestellung",
       subtitle: "Jedes Stück wird sorgfältig in unseren Werkstätten in der Lozère gefertigt.",
       labelNum: "Werkstatt-Trackingnummer :",

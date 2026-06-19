@@ -11,7 +11,7 @@ function MarqueBResult() {
   // Textes traduits pour l'univers Spider
   const content = {
     fr: {
-      back: "← Retour au Hub",
+      back: "← Retour à la dernière page",
       title: "Statut de l'expédition",
       subtitle: "Votre équipement Spider est en route vers votre zone de largage.",
       labelNum: "Code Traçabilité SPIDER :",
@@ -22,7 +22,7 @@ function MarqueBResult() {
       status: "Le colis a quitté notre centre logistique principal. Livraison express activée."
     },
     en: {
-      back: "← Back to Hub",
+      back: "← Back to the last page",
       title: "Shipment Status",
       subtitle: "Your Spider gear is on its way to your drop zone.",
       labelNum: "SPIDER Tracking Code:",
@@ -33,7 +33,7 @@ function MarqueBResult() {
       status: "The package has left our central logistics hub. Express delivery activated."
     },
     es: {
-      back: "← Volver al Hub",
+      back: "← Volver a la página anterior",
       title: "Estado del Envío",
       subtitle: "Tu equipamiento Spider está en camino a tu zone de entrega.",
       labelNum: "Código de Rastreo SPIDER:",
@@ -44,7 +44,7 @@ function MarqueBResult() {
       status: "El paquete ha salido de nuestro centro logístico central. Entrega exprés activada."
     },
     it: {
-      back: "← Ritorno all'Hub",
+      back: "← Torna all'ultima pagina",
       title: "Stato della spedizione",
       subtitle: "Il tuo equipaggiamento Spider sta arrivando alla tua zona di lancio.",
       labelNum: "Codice di tracciabilità SPIDER :",
@@ -55,7 +55,7 @@ function MarqueBResult() {
       status: "Il pacco è uscito dal nostro centro logistico principale. Consegna espressa abilitata."
     },
     de: {
-      back: "← Zurück zum Hub",
+      back: "← Zurück zur letzten Seite",
       title: "Versandstatus",
       subtitle: "Deine Spider-Ausrüstung ist auf dem Weg zu deiner Absprungszone.",
       labelNum: "SPIDER-Tracking-Code :",

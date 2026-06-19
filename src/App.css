@@ -1,6 +1,4 @@
-/* ==========================================
-   VARIABLES & CONFIGURATION (Couches de base)
-   ========================================== */
+
 :root {
   /* Mode Clair - Lumineux et naturel */
   --bg-gradient: linear-gradient(180deg, #cbc5b5 0%, #e5e1d8 100%);
@@ -13,13 +11,12 @@
 }
 
 .dark-mode {
-  /* Mode Sombre Adouci - Plus de noir pur pour une meilleure lisibilité */
-  --bg-gradient: linear-gradient(180deg, #1e2022 0%, #25282a 100%); /* Gris anthracite doux */
-  --text-color: #f1f5f9; /* Blanc cassé soyeux (agresse moins les yeux) */
-  --card-bg: linear-gradient(180deg, #2d3135 0%, #2b2e31 100%); /* Plus clair que le fond pour se détacher */
-  --input-bg: #181a1b; /* Plus sombre pour donner un effet creusé */
+  --bg-gradient: linear-gradient(180deg, #1e2022 0%, #25282a 100%); 
+  --text-color: #f1f5f9; 
+  --card-bg: linear-gradient(180deg, #2d3135 0%, #2b2e31 100%); 
+  --input-bg: #181a1b; 
   --border-color: rgba(255, 255, 255, 0.08);
-  --shadow-main: 0 12px 30px rgba(0, 0, 0, 0.25); /* Ombre visible mais subtile */
+  --shadow-main: 0 12px 30px rgba(0, 0, 0, 0.25); 
   --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -118,7 +115,6 @@ html, body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05), var(--shadow-inset);
 }
 
-/* Bouton principal équilibré pour les deux modes */
 .btn-suivre {
   padding: 15px 35px;
   font-size: 16px;
@@ -153,9 +149,6 @@ html, body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ==========================================
-   SUIVI DE COLIS & ÉTAPES
-   ========================================== */
 .progress {
   background: rgba(0, 0, 0, 0.08);
   height: 8px;
@@ -225,9 +218,6 @@ html, body {
   color: #a7f3d0; 
 }
 
-/* ==========================================
-   NOUVEAU DROPDOWN DE LANGUE (Haut à Droite)
-   ========================================== */
 .language-dropdown {
   position: fixed;
   top: 20px;
@@ -286,7 +276,6 @@ html, body {
   transition: all 0.2s ease;
 }
 
-/* Hover sur une langue - Inversion propre avec la couleur principale */
 .dropdown-content a:hover {
   background-color: var(--text-color);
   color: var(--input-bg);
@@ -319,9 +308,6 @@ html, body {
   }
 }
 
-/* ==========================================
-   RESPONSIVE & MEDIA QUERIES
-   ========================================== */
 @media (max-width: 600px) {
   #center {
     padding: 20px 16px;

@@ -12,57 +12,52 @@ function MarqueBResult() {
     fr: {
       back: "← Retour à la recherche",
       title: "Statut de l'expédition",
-      subtitle: "Votre équipement Spider est en route vers votre zone de largage.",
       labelNum: "Code Traçabilité SPIDER :",
       step1: "Commande Validée",
       step2: "Préparation & Conditionnement",
       step3: "Expédié / En Transit",
       step4: "Livré / Objectif Atteint",
-      status: "Le colis a quitté notre centre logistique principal. Livraison express activée."
+      status: "Votre colis a quitté le centre de tri. Il est actuellement pris en charge par notre transporteur."
     },
     en: {
       back: "← Back to search",
       title: "Shipment Status",
-      subtitle: "Your Spider gear is on its way to your drop zone.",
       labelNum: "SPIDER Tracking Code:",
       step1: "Order Verified",
       step2: "Preparation & Packing",
       step3: "Shipped / In Transit",
       step4: "Delivered / Mission Accomplished",
-      status: "The package has left our central logistics hub. Express delivery activated."
+      status: "Your package has left the sorting center. It is currently being handled by our carrier."
     },
     es: {
       back: "← Volver a la búsqueda",
       title: "Estado del Envío",
-      subtitle: "Tu equipamiento Spider está en camino a tu zone de entrega.",
       labelNum: "Código de Rastreo SPIDER:",
       step1: "Pedido Verificado",
       step2: "Preparación y Embalaje",
       step3: "En Tránsito",
       step4: "Entregado / Misión Cumplida",
-      status: "El paquete ha salido de nuestro centro logístico central. Entrega exprés activada."
+      status: "Tu paquete ha salido del centro de clasificación. Ahora lo está gestionando nuestro mensajero."
     },
     it: {
       back: "← Torna alla ricerca",
       title: "Stato della spedizione",
-      subtitle: "Il tuo equipaggiamento Spider sta arrivando alla tua zona di lancio.",
       labelNum: "Codice di tracciabilità SPIDER :",
       step1: "Comando Validato",
       step2: "Preparazione e Confezionamento",
       step3: "Spedito/In Transito",
       step4: "Raggiungiti/Obiettivo Raggiunto",
-      status: "Il pacco è uscito dal nostro centro logistico principale. Consegna espressa abilitata."
+      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere."
     },
     de: {
       back: "← Zurück zur Suche",
       title: "Versandstatus",
-      subtitle: "Deine Spider-Ausrüstung ist auf dem Weg zu deiner Absprungszone.",
       labelNum: "SPIDER-Tracking-Code :",
       step1: "Validierte Reihenfolge",
       step2: "Vorbereitung & Verpackung",
       step3: "Versendet / Unterwegs",
       step4: "Geliefert / Ziel erreicht",
-      status: "Das Paket hat unser Hauptlogistikzentrum verlassen. Expresszustellung aktiviert."
+      status: "DIhr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem Zusteller bearbeitet."
     },
   };
 
@@ -179,7 +174,7 @@ function MarqueBResult() {
             marginTop: '35px',
             textAlign: 'left'
           }}>
-            ⚡ <strong>SYSTEM LOG :</strong> {t.status}
+            ⚡{t.status}
           </div>
 
         </div>

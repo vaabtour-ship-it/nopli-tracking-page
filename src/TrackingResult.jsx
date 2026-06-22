@@ -13,7 +13,6 @@ function TrackingResult() {
     fr: {
       back: "← Retour à la recherche",
       title: "Suivi de votre commande",
-      subtitle: "Chaque pièce est confectionnée avec soin dans nos ateliers lozériens.",
       labelNum: "Numéro de suivi Atelier :",
       step1: "Commande validée",
       step2: "Contrôle qualité & Emballage",
@@ -24,18 +23,16 @@ function TrackingResult() {
     en: {
       back: "← Back to search",
       title: "Track your order",
-      subtitle: "Each piece is carefully crafted in our workshop in Lozère.",
       labelNum: "Atelier Tracking Number:",
       step1: "Order Verified",
       step2: "Quality check & Packaging",
       step3: "In transit",
       step4: "Delivered to you",
-      status: "Your package has left the sorting center. It is currently being handled by our carrier.r."
+      status: "Your package has left the sorting center. It is currently being handled by our carrier."
     },
     es: {
       back: "← Volver a la búsqueda",
       title: "Seguimiento de su pedido",
-      subtitle: "Cada pieza está cuidadosamente confeccionada en nuestro taller de Lozère.",
       labelNum: "Número de seguimiento:",
       step1: "Pedido Verificado",
       step2: "Control de calidad y embalaje",
@@ -46,7 +43,6 @@ function TrackingResult() {
     it: {
       back: "← Torna alla ricerca",
       title: "Tracciamento del tuo ordine",
-      subtitle: "Ogni pezzo è realizzato con cura nei nostri laboratori della Lozère.",
       labelNum: "Numero di tracciamento Officina :",
       step1: "Ordine confermato",
       step2: "Controllo qualità & Confezionamento",
@@ -57,7 +53,6 @@ function TrackingResult() {
     de: {
       back: "← Zurück zur Suche",
       title: "Verfolgung Ihrer Bestellung",
-      subtitle: "Jedes Stück wird sorgfältig in unseren Werkstätten in der Lozère gefertigt.",
       labelNum: "Werkstatt-Trackingnummer :",
       step1: "Bestellung bestätigt",
       step2: "Qualitätskontrolle & Verpackung",
@@ -144,7 +139,7 @@ function TrackingResult() {
           <div className="steps" style={{ marginTop: '25px' }}>
             <div className="step">
               <div className="circle" style={{ background: '#1a2a40', color: '#fff', border: 'none' }}>✓</div>
-              <p style={{ fontWeight: '500', color: '#1a2a40', fontSize: '13px', marginTop: '8px' }}>{t.step1}</p>
+              <p style={{ fontWeight: '500', color: '#1a2a40', fontSize: '17px', marginTop: '8px' }}>{t.step1}</p>
             </div>
 
             <div className="step">

@@ -363,3 +363,12 @@ html, body {
   25% { transform: translateX(-4px); }
   75% { transform: translateX(4px); }
 }
+/* Exemple : Sur les écrans de moins de 768px (smartphones/tablettes) */
+@media (max-width: 768px) {
+  .search-box {
+    flex-direction: column; /* On aligne les éléments verticalement */
+  }
+  .btn-suivre {
+    width: 100%; /* Le bouton prend toute la largeur pour être facile à cliquer */
+  }
+}

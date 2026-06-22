@@ -9,6 +9,7 @@ const translations = {
     placeholder: "Ex : FR123456789",
     btnSearch: "Suivre",
     alertEmpty: "Veuillez entrer un numéro de suivi.",
+    errorUnrecognized: "Numéro de suivi non reconnu. Vérifiez la saisie.",
     btnBack: "← Retour à la recherche",
     progressTitle: "Progression de votre colis",
     trackingNum: "Numéro de suivi :",
@@ -20,6 +21,7 @@ const translations = {
     placeholder: "Ex : FR123456789",
     btnSearch: "Track",
     alertEmpty: "Please enter a tracking number.",
+    errorUnrecognized: "Tracking number not recognized. Please check your entry.",
     btnBack: "← Back to search",
     progressTitle: "Your parcel progression",
     trackingNum: "Tracking number:",
@@ -31,17 +33,19 @@ const translations = {
     placeholder: "Ex : FR123456789",
     btnSearch: "Pista",
     alertEmpty: "Por favor, ingresa un número de seguimiento.",
+    errorUnrecognized: "Número de seguimiento no reconocido. Verifique la entrada.",
     btnBack: "← Volver a buscar",
     progressTitle: "Vista previa de su pedido",
     trackingNum: "Número de seguimiento:",
-    statusText: "Tu paquete está actuellement en tránsito hacia su destino."
+    statusText: "Tu paquete está actualmente en tránsito hacia su destino."
   },
   it: {
     title: "Segui il mio pacco",
-    subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordre",
+    subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
     placeholder: "Ex : FR123456789",
     btnSearch: "Seguire",
     alertEmpty: "Per favore inserisci un numero di tracciamento.",
+    errorUnrecognized: "Numero di tracciamento non riconosciuto. Controlla il dato.",
     btnBack: "← Torna alla ricerca",
     progressTitle: "Avanzamento del tuo pacco",
     trackingNum: "Numero di tracciamento :",
@@ -53,6 +57,7 @@ const translations = {
     placeholder: "Ex : FR123456789",
     btnSearch: "Folgen",
     alertEmpty: "Bitte gib eine Sendungsnummer ein.",
+    errorUnrecognized: "Sendungsnummer nicht erkannt. Bitte Eingabe prüfen.",
     btnBack: "← Zurück zur Suche",
     progressTitle: "Fortschritt Ihres Pakets",
     trackingNum: "Sendungsnummer :",
@@ -63,8 +68,6 @@ const translations = {
 function App() {
   const [trackingNumber, setTrackingNumber] = useState('');
   const [lang, setLang] = useState('fr');
-  
-  // État pour gérer le message d'erreur textuel sous l'input
   const [error, setError] = useState('');
   
   // Initialisation du mode sombre depuis le localStorage
@@ -74,36 +77,6 @@ function App() {
 
   const t = translations[lang];
   const navigate = useNavigate();
-
-  // Effet pour détecter le numéro de suivi dans l'URL au chargement complet
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const trackingFromUrl = queryParams.get('suivi');
-
-    if (trackingFromUrl) {
-      const cleanNumber = trackingFromUrl.trim();
-      setTrackingNumber(cleanNumber);
-      redirectionLogique(cleanNumber);
-    }
-  }, []);
-
-  // Effet pour appliquer la classe du mode sombre sur le body HTML
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
-
-  const changeLanguage = (e, newLang) => {
-    e.preventDefault();
-    setLang(newLang);
-    localStorage.setItem('appLang', newLang); 
-    setError(''); // Nettoie l'affichage d'erreur lors du switch de langue
-  };
 
   // Traitement centralisé de la redirection de marque
   const redirectionLogique = (number) => {
@@ -125,8 +98,38 @@ function App() {
       navigate('/suivi');
     } 
     else {
-      setError("Numéro de suivi non reconnu. Vérifiez Saisie.");
+      setError(t.errorUnrecognized);
     }
+  };
+
+  // Effet pour détecter le numéro de suivi dans l'URL au chargement complet
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const trackingFromUrl = queryParams.get('suivi');
+
+    if (trackingFromUrl) {
+      const cleanNumber = trackingFromUrl.trim();
+      setTrackingNumber(cleanNumber);
+      redirectionLogique(cleanNumber);
+    }
+  }, [lang]); // Réactive si la langue change pour mettre à jour l'erreur éventuelle
+
+  // Effet pour appliquer la classe du mode sombre sur le body HTML
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+
+  const changeLanguage = (e, newLang) => {
+    e.preventDefault();
+    setLang(newLang);
+    localStorage.setItem('appLang', newLang); 
+    setError(''); // Nettoie l'affichage d'erreur lors du switch de langue
   };
 
   // Gestion du clic sur le bouton de soumission

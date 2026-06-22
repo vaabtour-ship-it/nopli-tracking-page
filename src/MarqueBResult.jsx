@@ -8,10 +8,9 @@ function MarqueBResult() {
   const currentLang = localStorage.getItem('appLang') || 'fr';
   const trackingNumber = localStorage.getItem('trackingNumber') || "SPD-9942-X";
 
-  // Textes traduits pour l'univers Spider
   const content = {
     fr: {
-      back: "← Retour à la dernière page",
+      back: "← Retour à la recherche",
       title: "Statut de l'expédition",
       subtitle: "Votre équipement Spider est en route vers votre zone de largage.",
       labelNum: "Code Traçabilité SPIDER :",
@@ -22,7 +21,7 @@ function MarqueBResult() {
       status: "Le colis a quitté notre centre logistique principal. Livraison express activée."
     },
     en: {
-      back: "← Back to the last page",
+      back: "← Back to search",
       title: "Shipment Status",
       subtitle: "Your Spider gear is on its way to your drop zone.",
       labelNum: "SPIDER Tracking Code:",
@@ -33,7 +32,7 @@ function MarqueBResult() {
       status: "The package has left our central logistics hub. Express delivery activated."
     },
     es: {
-      back: "← Volver a la página anterior",
+      back: "← Volver a la búsqueda",
       title: "Estado del Envío",
       subtitle: "Tu equipamiento Spider está en camino a tu zone de entrega.",
       labelNum: "Código de Rastreo SPIDER:",
@@ -44,7 +43,7 @@ function MarqueBResult() {
       status: "El paquete ha salido de nuestro centro logístico central. Entrega exprés activada."
     },
     it: {
-      back: "← Torna all'ultima pagina",
+      back: "← Torna alla ricerca",
       title: "Stato della spedizione",
       subtitle: "Il tuo equipaggiamento Spider sta arrivando alla tua zona di lancio.",
       labelNum: "Codice di tracciabilità SPIDER :",
@@ -55,7 +54,7 @@ function MarqueBResult() {
       status: "Il pacco è uscito dal nostro centro logistico principale. Consegna espressa abilitata."
     },
     de: {
-      back: "← Zurück zur letzten Seite",
+      back: "← Zurück zur Suche",
       title: "Versandstatus",
       subtitle: "Deine Spider-Ausrüstung ist auf dem Weg zu deiner Absprungszone.",
       labelNum: "SPIDER-Tracking-Code :",
@@ -97,9 +96,9 @@ function MarqueBResult() {
 
         {/* Carte de Suivi Premium Spider */}
         <div className="tracking-card" style={{
-          background: '#0d0d11', /* Fond noir carbone très sombre */
+          background: '#0d0d11', 
           border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderTop: '4px solid #ff003c', /* Ligne supérieure Rouge Flash */
+          borderTop: '4px solid #ff003c', 
           borderRadius: '8px',
           padding: '35px',
           color: '#ffffff',
@@ -114,7 +113,7 @@ function MarqueBResult() {
               textTransform: 'uppercase', 
               fontSize: '26px',
               margin: '0 0 5px 0',
-              color: '#ff003c' /* Rouge */
+              color: '#ff003c' 
             }}>
               SPIDER
             </h2>
@@ -125,7 +124,7 @@ function MarqueBResult() {
 
           {/* Numéro de suivi style Bloc Technique militaire */}
           <div className="tracking-number" style={{ 
-            background: '#16161f', /* Gris très sombre */
+            background: '#16161f', 
             color: '#ffffff', 
             padding: '12px',
             borderRadius: '4px',

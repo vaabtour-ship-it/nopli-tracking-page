@@ -34,11 +34,11 @@ const translations = {
     btnBack: "← Volver a buscar",
     progressTitle: "Vista previa de su pedido",
     trackingNum: "Número de seguimiento:",
-    statusText: "Tu paquete está actualmente en tránsito hacia su destino."
+    statusText: "Tu paquete está actuellement en tránsito hacia su destino."
   },
   it: {
     title: "Segui il mio pacco",
-    subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
+    subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordre",
     placeholder: "Ex : FR123456789",
     btnSearch: "Seguire",
     alertEmpty: "Per favore inserisci un numero di tracciamento.",
@@ -64,6 +64,9 @@ function App() {
   const [trackingNumber, setTrackingNumber] = useState('');
   const [lang, setLang] = useState('fr');
   
+  // État pour gérer le message d'erreur textuel sous l'input
+  const [error, setError] = useState('');
+  
   // Initialisation du mode sombre depuis le localStorage
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('theme') === 'dark'
@@ -71,7 +74,20 @@ function App() {
 
   const t = translations[lang];
   const navigate = useNavigate();
-  
+
+  // Effet pour détecter le numéro de suivi dans l'URL au chargement complet
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const trackingFromUrl = queryParams.get('suivi');
+
+    if (trackingFromUrl) {
+      const cleanNumber = trackingFromUrl.trim();
+      setTrackingNumber(cleanNumber);
+      redirectionLogique(cleanNumber);
+    }
+  }, []);
+
+  // Effet pour appliquer la classe du mode sombre sur le body HTML
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -86,33 +102,40 @@ function App() {
     e.preventDefault();
     setLang(newLang);
     localStorage.setItem('appLang', newLang); 
+    setError(''); // Nettoie l'affichage d'erreur lors du switch de langue
   };
 
-  // Logique de recherche corrigée et ordonnée
-  const handleSearch = () => {
-    if (!trackingNumber.trim()) {
-      alert(t.alertEmpty);
-      return;
-    }
+  // Traitement centralisé de la redirection de marque
+  const redirectionLogique = (number) => {
+    setError(''); 
     
-    localStorage.setItem('trackingNumber', trackingNumber);
+    localStorage.setItem('trackingNumber', number);
     localStorage.setItem('appLang', lang);
 
-    if (trackingNumber.includes('0731')) {
+    if (number.includes('0731')) {
       navigate('/marque-b');
     } 
-    else if (trackingNumber.includes('3107')) {
+    else if (number.includes('3107')) {
       navigate('/suivi');
     }
-    else if (trackingNumber.includes('07')) {
+    else if (number.includes('07')) {
       navigate('/marque-b');
     } 
-    else if (trackingNumber.includes('31')) {
+    else if (number.includes('31')) {
       navigate('/suivi');
     } 
     else {
-      alert("Numéro de suivi non reconnu.");
+      setError("Numéro de suivi non reconnu. Vérifiez Saisie.");
     }
+  };
+
+  // Gestion du clic sur le bouton de soumission
+  const handleSearch = () => {
+    if (!trackingNumber.trim()) {
+      setError(t.alertEmpty);
+      return;
+    }
+    redirectionLogique(trackingNumber.trim());
   };
 
   return (
@@ -144,6 +167,7 @@ function App() {
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
 
+      {/* Sélecteur de langue en Dropdown */}
       <div className="language-dropdown">
         <button className="dropdown-btn">
           🌐 {lang.toUpperCase()} ▾
@@ -168,17 +192,22 @@ function App() {
             <p>{t.subtitle}</p>
           </div>
 
-          <div className="search-box">
+          <div className={`search-box ${error ? 'has-error' : ''}`}>
             <input
               type="text"
               placeholder={t.placeholder}
               value={trackingNumber}
-              onChange={(e) => setTrackingNumber(e.target.value)}
+              onChange={(e) => {
+                setTrackingNumber(e.target.value);
+                if (error) setError(''); 
+              }}
             />
             <button className="btn-suivre" onClick={handleSearch}>
               {t.btnSearch}
             </button>
           </div>
+
+          {error && <p className="error-message">⚠️ {error}</p>}
         </div>
 
       </section>
@@ -186,4 +215,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

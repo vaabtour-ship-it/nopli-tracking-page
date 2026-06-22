@@ -11,7 +11,7 @@ function TrackingResult() {
   // Textes traduits pour correspondre au style Atelier Tuffery
   const content = {
     fr: {
-      back: "← Retour à l'Atelier",
+      back: "← Retour à la recherche",
       title: "Suivi de votre commande",
       subtitle: "Chaque pièce est confectionnée avec soin dans nos ateliers lozériens.",
       labelNum: "Numéro de suivi Atelier :",
@@ -19,10 +19,10 @@ function TrackingResult() {
       step2: "Contrôle qualité & Emballage",
       step3: "En cours d'acheminement",
       step4: "Livré chez vous",
-      status: "Votre colis a quitté le centre de tri. Il est actuellement pris en charge par notre transporteur écoresponsable."
+      status: "Votre colis a quitté le centre de tri. Il est actuellement pris en charge par notre transporteur."
     },
     en: {
-      back: "← Back to the last page",
+      back: "← Back to search",
       title: "Track your order",
       subtitle: "Each piece is carefully crafted in our workshop in Lozère.",
       labelNum: "Atelier Tracking Number:",
@@ -30,10 +30,10 @@ function TrackingResult() {
       step2: "Quality check & Packaging",
       step3: "In transit",
       step4: "Delivered to you",
-      status: "Your package has left the sorting center. It is currently handled by our eco-responsible carrier."
+      status: "Your package has left the sorting center. It is currently being handled by our carrier.r."
     },
     es: {
-      back: "← Volver a la página anterior",
+      back: "← Volver a la búsqueda",
       title: "Seguimiento de su pedido",
       subtitle: "Cada pieza está cuidadosamente confeccionada en nuestro taller de Lozère.",
       labelNum: "Número de seguimiento:",
@@ -41,10 +41,10 @@ function TrackingResult() {
       step2: "Control de calidad y embalaje",
       step3: "En tránsito",
       step4: "Entregado",
-      status: "Tu paquete ha salido del centro de clasificación. Actualmente está en manos de nuestro transportista eco-responsable."
+      status: "Tu paquete ha salido del centro de clasificación. Ahora lo está gestionando nuestro mensajero."
     },
     it: {
-      back: "← Torna all'ultima pagina",
+      back: "← Torna alla ricerca",
       title: "Tracciamento del tuo ordine",
       subtitle: "Ogni pezzo è realizzato con cura nei nostri laboratori della Lozère.",
       labelNum: "Numero di tracciamento Officina :",
@@ -52,10 +52,10 @@ function TrackingResult() {
       step2: "Controllo qualità & Confezionamento",
       step3: "In transito",
       step4: "Consegnato a casa tua",
-      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere ecologico."
+      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere."
     },
     de: {
-      back: "← Zurück zur letzten Seite",
+      back: "← Zurück zur Suche",
       title: "Verfolgung Ihrer Bestellung",
       subtitle: "Jedes Stück wird sorgfältig in unseren Werkstätten in der Lozère gefertigt.",
       labelNum: "Werkstatt-Trackingnummer :",
@@ -63,7 +63,7 @@ function TrackingResult() {
       step2: "Qualitätskontrolle & Verpackung",
       step3: "Auf dem Weg",
       step4: "Zu Ihnen geliefert",
-      status: "Ihr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem umweltfreundlichen Versanddienstleister bearbeitet.."
+      status: "Ihr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem Zusteller bearbeitet."
     },
   };
 
@@ -122,8 +122,8 @@ function TrackingResult() {
 
           {/* Numéro de suivi style étiquette de jean */}
           <div className="tracking-number" style={{ 
-            background: '#f3ece5', /* Couleur lin/cuir clair */
-            color: '#7c533c', /* Brun cuir */
+            background: '#f3ece5', 
+            color: '#7c533c', 
             padding: '10px',
             borderRadius: '6px',
             fontWeight: '600',
@@ -176,7 +176,7 @@ function TrackingResult() {
             marginTop: '30px',
             textAlign: 'left'
           }}>
-            🧵 <strong>House founded in 1892 :</strong> {t.status}
+            {t.status}
           </div>
 
         </div>

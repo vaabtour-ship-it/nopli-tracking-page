@@ -1,14 +1,16 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // <-- Ajout de useParams
 import './App.css';
 
 function TrackingResult() {
   const navigate = useNavigate();
+  const { suiviId } = useParams(); // <-- On récupère le numéro depuis l'URL si existant
 
   // Récupération de la langue et du numéro de suivi
   const currentLang = localStorage.getItem('appLang') || 'fr';
-  const trackingNumber = localStorage.getItem('trackingNumber') || "AT-74291-FR";
+  
+  // Priorité à l'URL, sinon localStorage, sinon valeur par défaut
+  const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "AT-74291-FR";
 
-  // Textes traduits pour correspondre au style Atelier Tuffery
   const content = {
     fr: {
       back: "← Retour à la recherche",
@@ -48,7 +50,7 @@ function TrackingResult() {
       step2: "Controllo qualità & Confezionamento",
       step3: "In transito",
       step4: "Consegnato a casa tua",
-      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere."
+      status: "Il tuo pacco ha lasciato le centre de tri. Attualmente è gestito dal nostro corriere."
     },
     de: {
       back: "← Zurück zur Suche",
@@ -89,8 +91,8 @@ function TrackingResult() {
 
         {/* Conteneur principal style Tuffery */}
         <div className="tracking-card" style={{
-          background: '#fcfbfa', /* Blanc écru artisanal */
-          borderTop: '5px solid #1a2a40', /* Ligne supérieure Bleu Indigo */
+          background: '#fcfbfa', 
+          borderTop: '5px solid #1a2a40', 
           borderRadius: '12px',
           padding: '35px',
           color: '#1a1a1a',
@@ -99,7 +101,6 @@ function TrackingResult() {
           
           {/* En-tête de la carte */}
           <div style={{ marginBottom: '30px', textAlign: 'center' }}>
-            {/* Logo textuel minimaliste rappelant la marque */}
             <h2 style={{ 
               fontFamily: 'serif', 
               letterSpacing: '3px', 
@@ -153,7 +154,6 @@ function TrackingResult() {
             </div>
 
             <div className="step">
-              {/* Étape future en blanc ajouré */}
               <div className="circle" style={{ background: '#fff', color: '#ccc', border: '2px solid #e0e5eb' }}>4</div>
               <p style={{ fontWeight: '400', color: '#999', fontSize: '13px', marginTop: '8px' }}>{t.step4}</p>
             </div>

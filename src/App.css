@@ -282,7 +282,6 @@ html, body {
   padding-left: 22px;
 }
 
-/* Style de la langue active */
 .dropdown-content a.active {
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.05);
@@ -321,54 +320,47 @@ html, body {
     width: 100%;
     padding: 16px;
   }
-  /* Ajustement discret sur mobile pour ne pas chevaucher */
   .language-dropdown {
     top: 15px;
     right: 15px;
   }
 }
-/* ==========================================
-   STYLE D'ERREUR (STYLE LA POSTE)
-   ========================================== */
 
-/* Le texte d'erreur */
 .error-message {
-  color: #dc3545; /* Rouge vif alerte */
+  color: #dc3545; 
   font-size: 14px;
   font-weight: 500;
   text-align: left;
   margin-top: 10px;
   margin-left: 5px;
-  animation: shake 0.3s ease-in-out; /* Petit effet de secousse à l'apparition */
+  animation: shake 0.3s ease-in-out; 
 }
 
-/* Changement de couleur de la bordure de l'input en cas d'erreur */
 .search-box.has-error input {
   border-color: #dc3545 !important;
-  background-color: rgba(220, 53, 69, 0.02); /* Très léger fond rouge */
+  background-color: rgba(220, 53, 69, 0.02); 
 }
 
-/* Optionnel : Mode sombre adapté pour le rouge */
 .dark-mode .error-message {
-  color: #ff6b6b; /* Rouge un peu plus clair/pastel pour mieux ressortir sur fond sombre */
+  color: #ff6b6b; 
 }
 .dark-mode .search-box.has-error input {
   border-color: #ff6b6b !important;
   background-color: rgba(255, 107, 107, 0.05);
 }
 
-/* Animation de secousse pour attirer l'œil */
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-4px); }
   75% { transform: translateX(4px); }
 }
-/* Exemple : Sur les écrans de moins de 768px (smartphones/tablettes) */
+
 @media (max-width: 768px) {
   .search-box {
-    flex-direction: column; /* On aligne les éléments verticalement */
+    flex-direction: column; 
   }
   .btn-suivre {
-    width: 100%; /* Le bouton prend toute la largeur pour être facile à cliquer */
+    width: 100%; 
   }
 }

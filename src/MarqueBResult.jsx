@@ -1,12 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // <-- Ajout de useParams
 import './App.css';
 
 function MarqueBResult() {
   const navigate = useNavigate();
+  const { suiviId } = useParams(); // <-- On récupère le numéro depuis l'URL si existant
 
   // Récupération de la langue et du numéro de suivi
   const currentLang = localStorage.getItem('appLang') || 'fr';
-  const trackingNumber = localStorage.getItem('trackingNumber') || "SPD-9942-X";
+  
+  // Priorité à l'URL, sinon localStorage, sinon valeur par défaut
+  const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "SPD-9942-X";
 
   const content = {
     fr: {
@@ -139,7 +142,7 @@ function MarqueBResult() {
             <div className="progress-bar" style={{ background: '#ff003c', width: '75%', borderRadius: '2px', boxShadow: '0 0 10px #ff003c' }}></div>
           </div>
 
-          {/* Étapes du déploiement - LIST-STYLE NONE CORRIGÉ ICI */}
+          {/* Étapes du déploiement */}
           <div className="steps" style={{ marginTop: '30px', listStyle: 'none', padding: '0' }}>
             <div className="step" style={{ listStyleType: 'none' }}>
               <div className="circle" style={{ background: '#ff003c', color: '#fff', border: 'none', boxShadow: '0 0 8px #ff003c' }}>✓</div>

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+
+import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom' 
 import './App.css'
 
@@ -37,7 +38,7 @@ const translations = {
     btnBack: "← Volver a buscar",
     progressTitle: "Vista previa de su pedido",
     trackingNum: "Número de seguimiento:",
-    statusText: "Tu paquete está actualmente en tránsito hacia su destino."
+    statusText: "Tu paquete está actuellement en tránsito hacia su destino."
   },
   it: {
     title: "Segui il mio pacco",
@@ -70,39 +71,34 @@ function App() {
   const [lang, setLang] = useState('fr');
   const [error, setError] = useState('');
   
-  // Initialisation du mode sombre depuis le localStorage
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('theme') === 'dark'
   );
 
   const t = translations[lang];
   const navigate = useNavigate();
+  
 
-  // Traitement centralisé de la redirection de marque
-  const redirectionLogique = (number) => {
+
+  const redirectionLogique = useCallback((number) => {
     setError(''); 
     
     localStorage.setItem('trackingNumber', number);
     localStorage.setItem('appLang', lang);
 
-    if (number.includes('0731')) {
+    if (number.includes('0731') || number.includes('07')) {
       navigate('/marque-b');
     } 
-    else if (number.includes('3107')) {
-      navigate('/suivi');
-    }
-    else if (number.includes('07')) {
-      navigate('/marque-b');
-    } 
-    else if (number.includes('31')) {
+    else if (number.includes('3107') || number.includes('31')) {
       navigate('/suivi');
     } 
     else {
-      setError(t.errorUnrecognized);
+      // Au lieu de lier t.errorUnrecognized ici, on passe par une fonction ou on gère l'état proprement
+      setError('unrecognized');
     }
-  };
+  }, [navigate, lang]);
 
-  // Effet pour détecter le numéro de suivi dans l'URL au chargement complet
+  // 2. L'effet s'exécute UNE SEULE FOIS au chargement initial du composant []
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const trackingFromUrl = queryParams.get('suivi');
@@ -112,7 +108,7 @@ function App() {
       setTrackingNumber(cleanNumber);
       redirectionLogique(cleanNumber);
     }
-  }, [lang]); // Réactive si la langue change pour mettre à jour l'erreur éventuelle
+  }, [redirectionLogique]);
 
   // Effet pour appliquer la classe du mode sombre sur le body HTML
   useEffect(() => {
@@ -129,17 +125,24 @@ function App() {
     e.preventDefault();
     setLang(newLang);
     localStorage.setItem('appLang', newLang); 
-    setError(''); // Nettoie l'affichage d'erreur lors du switch de langue
+    setError(''); 
   };
 
-  // Gestion du clic sur le bouton de soumission
   const handleSearch = () => {
     if (!trackingNumber.trim()) {
-      setError(t.alertEmpty);
+      setError('empty');
       return;
     }
     redirectionLogique(trackingNumber.trim());
   };
+
+  // Gestion dynamique de l'affichage textuel de l'erreur
+  const renderErrorText = () => {
+    if (error === 'empty') return t.alertEmpty;
+    if (error === 'unrecognized') return t.errorUnrecognized;
+    return null;
+  };
+  
 
   return (
     <div className="app-container">
@@ -185,7 +188,6 @@ function App() {
       </div>
       
       <section id="center">
-        
         {/* --- BLOC RECHERCHE --- */}
         <div className="search-container">
           <div className="hero"></div>
@@ -210,9 +212,8 @@ function App() {
             </button>
           </div>
 
-          {error && <p className="error-message">⚠️ {error}</p>}
+          {error && <p className="error-message">⚠️ {renderErrorText()}</p>}
         </div>
-
       </section>
     </div>
   )

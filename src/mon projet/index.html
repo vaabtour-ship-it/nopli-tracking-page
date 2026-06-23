@@ -11,30 +11,24 @@
     <script>
         async function fetchData() {
             try {
-                // On appelle les deux routes de manière relative
-                const [resUsers, resProducts] = await Promise.all([
+                // On appelle les TROIS routes en même temps
+                const [resUsers, resProducts, resBrands] = await Promise.all([
                     fetch('/api/users'),
-                    fetch('/api/products')
+                    fetch('/api/products'),
+                    fetch('/api/brands')
                 ]);
 
                 const users = await resUsers.json();
                 const products = await resProducts.json();
+                const brands = await resBrands.json();
 
-                // Affichage dans la page
-                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
+                // Affichage global de toutes les données dans la page
+                document.getElementById('output').textContent = JSON.stringify({ users, products, brands }, null, 2);
             } catch (error) {
                 document.getElementById('output').textContent = "Erreur : " + error.message;
             }
         }
-        // Exemple d'appel à ajouter dans ton index.html
-            fetch('/api/brands')
-              .then(res => res.json())
-              .then(brands => {
-              console.log("Marques reçues :", brands);
-    
-            })
-            .catch(error => console.error("Erreur marques :", error));
-
+       
         // Lancer l'appel au chargement de la page
         fetchData();
     </script>

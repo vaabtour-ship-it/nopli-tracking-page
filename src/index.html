@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test API Vercel</title>
+</head>
+<body>
+    <h1>Données Dynamiques Récupérées :</h1>
+    <pre id="output">Chargement des données...</pre>
+
+    <script>
+        async function fetchData() {
+            try {
+                const [resUsers, resProducts] = await Promise.all([
+                    fetch('/api/users'),
+                    fetch('/api/products')
+                ]);
+
+                const users = await resUsers.json();
+                const products = await resProducts.json();
+
+                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
+            } catch (error) {
+                document.getElementById('output').textContent = "Erreur : " + error.message;
+            }
+        }
+        fetchData();
+    </script>
+</body>
+</html>

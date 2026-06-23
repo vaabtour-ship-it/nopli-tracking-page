@@ -11,15 +11,15 @@
     <script>
         async function fetchData() {
             try {
-                const [resUsers, resProducts] = await Promise.all([
+                const [resUsers, resBrands] = await Promise.all([
                     fetch('/api/users'),
-                    fetch('/api/products')
+                    fetch('/api/brands')
                 ]);
 
                 const users = await resUsers.json();
-                const products = await resProducts.json();
+                const brands = await resBrands.json();
 
-                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
+                document.getElementById('output').textContent = JSON.stringify({ users, brands }, null, 2);
             } catch (error) {
                 document.getElementById('output').textContent = "Erreur : " + error.message;
             }

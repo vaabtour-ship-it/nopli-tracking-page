@@ -17,7 +17,7 @@
                 ]);
 
                 const users = await resUsers.json();
-                const products = await resBrands.json();
+                const brands = await resBrands.json();
 
                 document.getElementById('output').textContent = JSON.stringify({ users, brands }, null, 2);
             } catch (error) {

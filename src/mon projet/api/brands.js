@@ -1,9 +1,10 @@
 export default function handler(req, res) {
-  // On autorise le site à lire l'API (CORS)
+  // On autorise ton site HTML à interroger l'API
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
 
-  const bonneGueuleData = {
+  // Tes mock data intégrées
+  const brandMockData = {
     id: "recuf8OlUa68Yflkt",
     created_at: "2025-06-04 13:19",
     updated_at: "2026-04-27 09:52",
@@ -43,5 +44,6 @@ export default function handler(req, res) {
     banner_url: "https://tbuzxjeicktekxddacna.supabase.co/storage/v1/object/public/brands-media//IMG_Logo.jpg"
   };
 
-  res.status(200).json(bonneGueuleData);
+  // Envoi de la réponse
+  res.status(200).json(brandMockData);
 }

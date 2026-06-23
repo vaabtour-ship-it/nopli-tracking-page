@@ -20,8 +20,8 @@
 </head>
 <body>
 
-<div class="container" id="main-container">
-    <div id="loader" class="loading">Chargement des données de la marque...</div>
+<div class="container">
+    <div id="loader" class="loading">Chargement des données depuis l'API Vercel...</div>
     
     <img class="logo" id="brand-logo" src="" alt="Logo" style="display:none;">
     <h1 id="brand-title"></h1>
@@ -67,22 +67,21 @@
 </div>
 
 <script>
-    async function loadBrandData() {
+    async function fetchBrandFromVercel() {
         try {
-            // L'APPEL API : On va chercher les infos sur ta route Vercel
+            // Appel à la route API de Vercel
             const response = await fetch('/api/brands');
-            if (!response.ok) throw new Error("Impossible de récupérer l'API");
+            if (!response.ok) throw new Error("Réponse de l'API corrompue");
             
             const brand = await response.json();
 
-            // Remplissage des images et titres
+            // Injection des données de la marque
             document.getElementById('brand-logo').src = brand.logo_url;
             document.getElementById('brand-logo').style.display = 'block';
             document.getElementById('brand-title').textContent = brand.shop_name;
             document.getElementById('brand-banner').src = brand.banner_url;
             document.getElementById('brand-banner').style.display = 'block';
 
-            // Remplissage du tableau ligne par ligne
             document.getElementById('m-id').textContent = brand.id;
             document.getElementById('m-created').textContent = brand.created_at;
             document.getElementById('m-updated').textContent = brand.updated_at;
@@ -97,7 +96,6 @@
             document.getElementById('m-country').textContent = brand.country;
             document.getElementById('m-currency').textContent = brand.currency;
             
-            // Liens
             document.getElementById('link-official').href = brand.official_site;
             document.getElementById('link-official').textContent = brand.official_site;
             document.getElementById('link-second').href = brand.second_hand_site;
@@ -111,7 +109,6 @@
             document.getElementById('m-font-text').textContent = brand.text_font;
             document.getElementById('m-format-title').textContent = brand.title_format;
             
-            // Couleurs
             document.getElementById('m-color-light').innerHTML = `${brand.color_light} <span style="display:inline-block;width:20px;height:20px;background:${brand.color_light};border:1px solid #000;vertical-align:middle;margin-left:10px;"></span>`;
             document.getElementById('m-color-dark').innerHTML = `${brand.color_dark} <span style="display:inline-block;width:20px;height:20px;background:${brand.color_dark};border:1px solid #000;vertical-align:middle;margin-left:10px;"></span>`;
             
@@ -128,18 +125,18 @@
             document.getElementById('m-wallet').textContent = brand.wallet_id;
             document.getElementById('m-address').textContent = brand.address_id;
 
-            // Masquer le chargement et afficher le tableau
+            // On cache le loader et on montre le tableau
             document.getElementById('loader').style.display = 'none';
             document.getElementById('brand-table').style.display = 'table';
 
         } catch (error) {
-            document.getElementById('loader').textContent = "Erreur de chargement : " + error.message;
+            document.getElementById('loader').textContent = "Erreur API : " + error.message;
             document.getElementById('loader').style.color = 'red';
         }
     }
 
-    // Lancer la fonction
-    loadBrandData();
+    // Lancer le chargement
+    fetchBrandFromVercel();
 </script>
 </body>
 </html>

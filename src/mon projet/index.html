@@ -2,49 +2,33 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test API Vercel</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
-        pre { background: #2d3748; color: #fff; padding: 15px; border-radius: 8px; overflow-x: auto; }
-        .error { color: #e53e3e; font-weight: bold; }
-    </style>
 </head>
 <body>
     <h1>Données Dynamiques Récupérées :</h1>
-    
-    <h2>Utilisateurs (/api/users) :</h2>
-    <pre id="output-users">Chargement des utilisateurs...</pre>
-
-    <h2>Marques (/api/brands) :</h2>
-    <pre id="output-brands">Chargement des marques...</pre>
+    <pre id="output">Chargement des données...</pre>
 
     <script>
-        async function fetchUsers() {
+        async function fetchData() {
             try {
-                const res = await fetch('/api/users');
-                if (!res.ok) throw new Error(`Erreur ${res.status}`);
-                const data = await res.json();
-                document.getElementById('output-users').textContent = JSON.stringify(data, null, 2);
+                // On appelle les deux routes de manière relative
+                const [resUsers, resProducts] = await Promise.all([
+                    fetch('/api/users'),
+                    fetch('/api/products')
+                ]);
+
+                const users = await resUsers.json();
+                const products = await resProducts.json();
+
+                // Affichage dans la page
+                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
             } catch (error) {
-                document.getElementById('output-users').innerHTML = `<span class="error">Impossible de charger les utilisateurs : ${error.message}</span>`;
+                document.getElementById('output').textContent = "Erreur : " + error.message;
             }
         }
 
-        async function fetchBrands() {
-            try {
-                const res = await fetch('/api/brands');
-                if (!res.ok) throw new Error(`Erreur ${res.status}`);
-                const data = await res.json();
-                document.getElementById('output-brands').textContent = JSON.stringify(data, null, 2);
-            } catch (error) {
-                document.getElementById('output-brands').innerHTML = `<span class="error">Impossible de charger les marques : ${error.message} (Vérifie le fichier api/brands.js)</span>`;
-            }
-        }
-
-        // On lance les deux de manière indépendante
-        fetchUsers();
-        fetchBrands();
+        // Lancer l'appel au chargement de la page
+        fetchData();
     </script>
 </body>
 </html>

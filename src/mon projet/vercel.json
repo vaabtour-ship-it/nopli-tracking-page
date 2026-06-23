@@ -1,7 +1,0 @@
-{
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/data/index.html" },
-    { "source": "/api/(.*)", "destination": "/api/$1" }
-  ]
-}

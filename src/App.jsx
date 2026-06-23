@@ -1,6 +1,5 @@
-
 import { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate, useLocation } from 'react-router-dom' // <-- CORRECTION : Ajout de useLocation ici
 import './App.css'
 
 const translations = {
@@ -77,8 +76,16 @@ function App() {
 
   const t = translations[lang];
   const navigate = useNavigate();
-  
+  const location = useLocation(); // <-- CORRECTION : Stockage de la localisation de la page
 
+  // CORRECTION : Effet qui écoute si le GestionnaireSuivi renvoie une erreur
+  useEffect(() => {
+    if (location.state && location.state.error) {
+      setError(location.state.error);
+      // On nettoie l'historique pour éviter que l'erreur reste au rafraîchissement
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   const redirectionLogique = useCallback((number) => {
     setError(''); 
@@ -93,12 +100,10 @@ function App() {
       navigate('/suivi');
     } 
     else {
-      // Au lieu de lier t.errorUnrecognized ici, on passe par une fonction ou on gère l'état proprement
       setError('unrecognized');
     }
   }, [navigate, lang]);
 
-  // 2. L'effet s'exécute UNE SEULE FOIS au chargement initial du composant []
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const trackingFromUrl = queryParams.get('suivi');
@@ -110,7 +115,6 @@ function App() {
     }
   }, [redirectionLogique]);
 
-  // Effet pour appliquer la classe du mode sombre sur le body HTML
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -128,15 +132,22 @@ function App() {
     setError(''); 
   };
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    if (e) e.preventDefault();
+
     if (!trackingNumber.trim()) {
       setError('empty');
       return;
     }
-    redirectionLogique(trackingNumber.trim());
+
+    const cleanNumber = trackingNumber.trim();
+
+    localStorage.setItem('trackingNumber', cleanNumber);
+    localStorage.setItem('appLang', lang);
+
+    navigate(`/${cleanNumber}`);
   };
 
-  // Gestion dynamique de l'affichage textuel de l'erreur
   const renderErrorText = () => {
     if (error === 'empty') return t.alertEmpty;
     if (error === 'unrecognized') return t.errorUnrecognized;
@@ -147,7 +158,6 @@ function App() {
   return (
     <div className="app-container">
       
-      {/* Bouton Switch Mode Sombre / Mode Clair */}
       <button 
         onClick={() => setDarkMode(!darkMode)}
         style={{
@@ -173,7 +183,6 @@ function App() {
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
 
-      {/* Sélecteur de langue en Dropdown */}
       <div className="language-dropdown">
         <button className="dropdown-btn">
           🌐 {lang.toUpperCase()} ▾
@@ -188,7 +197,6 @@ function App() {
       </div>
       
       <section id="center">
-        {/* --- BLOC RECHERCHE --- */}
         <div className="search-container">
           <div className="hero"></div>
           

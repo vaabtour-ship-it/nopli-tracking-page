@@ -13,7 +13,7 @@
             try {
                 const [resUsers, resProducts] = await Promise.all([
                     fetch('/api/users'),
-                    fetch('/api/products')
+                    fetch('/api/brands')
                 ]);
 
                 const users = await resUsers.json();

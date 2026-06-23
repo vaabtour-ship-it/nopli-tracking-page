@@ -26,6 +26,14 @@
                 document.getElementById('output').textContent = "Erreur : " + error.message;
             }
         }
+        // Exemple d'appel à ajouter dans ton index.html
+            fetch('/api/brands')
+              .then(res => res.json())
+              .then(brands => {
+              console.log("Marques reçues :", brands);
+    
+            })
+            .catch(error => console.error("Erreur marques :", error));
 
         // Lancer l'appel au chargement de la page
         fetchData();

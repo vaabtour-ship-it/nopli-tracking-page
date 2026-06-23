@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default function handler(req, res) {
   // On autorise ton site HTML à interroger l'API
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -47,3 +48,12 @@ export default function handler(req, res) {
   // Envoi de la réponse
   res.status(200).json(brandMockData);
 }
+=======
+import { brands } from '../data/mockData.js';
+export const brands = [
+  { id: 1, name: "Apple", country: "États-Unis", industry: "Technologie" },
+  { id: 2, name: "Samsung", country: "Corée du Sud", industry: "Électronique" },
+  { id: 3, name: "Nike", country: "États-Unis", industry: "Mode & Sport" },
+  { id: 4, name: "Toyota", country: "Japon", industry: "Automobile" }
+];
+>>>>>>> parent of 3a10f8d (nv projet)

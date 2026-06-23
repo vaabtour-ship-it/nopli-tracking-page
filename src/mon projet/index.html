@@ -20,12 +20,22 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <div class="container">
     <div id="loader" class="loading">Chargement des données depuis l'API Vercel...</div>
     
     <img class="logo" id="brand-logo" src="" alt="Logo" style="display:none;">
     <h1 id="brand-title"></h1>
     <img class="banner" id="brand-banner" src="" alt="Banner" style="display:none;">
+=======
+    <script>
+        async function fetchData() {
+            try {
+                const [resUsers, resProducts] = await Promise.all([
+                    fetch('/api/users'),
+                    fetch('/api/products')
+                ]);
+>>>>>>> parent of 3a10f8d (nv projet)
 
     <table id="brand-table" style="display:none;">
         <tr><td>ID</td><td id="m-id"></td></tr>
@@ -66,6 +76,7 @@
     </table>
 </div>
 
+<<<<<<< HEAD
 <script>
     async function fetchBrandFromVercel() {
         try {
@@ -138,5 +149,14 @@
     // Lancer le chargement
     fetchBrandFromVercel();
 </script>
+=======
+                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
+            } catch (error) {
+                document.getElementById('output').textContent = "Erreur : " + error.message;
+            }
+        }
+        fetchData();
+    </script>
+>>>>>>> parent of 3a10f8d (nv projet)
 </body>
 </html>

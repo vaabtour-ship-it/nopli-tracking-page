@@ -2,33 +2,144 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test API Vercel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations de la marque - Bonnegueule</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 40px; }
+        .container { max-width: 1000px; margin: auto; background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,.15); }
+        h1 { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
+        img.logo { width: 180px; display: block; margin: auto; }
+        img.banner { width: 100%; border-radius: 10px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 12px; border-bottom: 1px solid #ddd; vertical-align: top; }
+        td:first-child { font-weight: bold; width: 280px; background: #fafafa; }
+        a { color: #0077cc; text-decoration: none; }
+        pre { white-space: pre-wrap; font-family: Arial, sans-serif; background: #f8f8f8; padding: 15px; border-radius: 8px; margin: 0; }
+        .loading { text-align: center; font-size: 1.2rem; color: #666; padding: 20px; }
+    </style>
 </head>
 <body>
-    <h1>Données Dynamiques Récupérées :</h1>
-    <pre id="output">Chargement des données...</pre>
 
-    <script>
-        async function fetchData() {
-            try {
-                // On appelle les deux routes de manière relative
-                const [resUsers, resProducts] = await Promise.all([
-                    fetch('/api/users'),
-                    fetch('/api/products')
-                ]);
+<div class="container" id="main-container">
+    <div id="loader" class="loading">Chargement des données de la marque...</div>
+    
+    <img class="logo" id="brand-logo" src="" alt="Logo" style="display:none;">
+    <h1 id="brand-title"></h1>
+    <img class="banner" id="brand-banner" src="" alt="Banner" style="display:none;">
 
-                const users = await resUsers.json();
-                const products = await resProducts.json();
+    <table id="brand-table" style="display:none;">
+        <tr><td>ID</td><td id="m-id"></td></tr>
+        <tr><td>Créé le</td><td id="m-created"></td></tr>
+        <tr><td>Dernière mise à jour</td><td id="m-updated"></td></tr>
+        <tr><td>Nom</td><td id="m-name"></td></tr>
+        <tr><td>Code</td><td id="m-code"></td></tr>
+        <tr><td>Numéro SIREN</td><td id="m-siren"></td></tr>
+        <tr><td>Société</td><td id="m-company"></td></tr>
+        <tr><td>Type</td><td id="m-type"></td></tr>
+        <tr><td>Capital</td><td id="m-capital"></td></tr>
+        <tr><td>Statut</td><td id="m-status"></td></tr>
+        <tr><td>TVA</td><td id="m-tva"></td></tr>
+        <tr><td>Pays</td><td id="m-country"></td></tr>
+        <tr><td>Devise</td><td id="m-currency"></td></tr>
+        <tr><td>Site officiel</td><td><a id="link-official" href="" target="_blank"></a></td></tr>
+        <tr><td>Site Seconde Main</td><td><a id="link-second" href="" target="_blank"></a></td></tr>
+        <tr><td>Shopify</td><td id="m-shopify"></td></tr>
+        <tr><td>Nom de la boutique</td><td id="m-shopname"></td></tr>
+        <tr><td>Langue par défaut</td><td id="m-lang"></td></tr>
+        <tr><td>Langues disponibles</td><td id="m-langs"></td></tr>
+        <tr><td>Police des titres</td><td id="m-font-title"></td></tr>
+        <tr><td>Police du texte</td><td id="m-font-text"></td></tr>
+        <tr><td>Format des titres</td><td id="m-format-title"></td></tr>
+        <tr><td>Couleur claire</td><td id="m-color-light"></td></tr>
+        <tr><td>Couleur foncée</td><td id="m-color-dark"></td></tr>
+        <tr><td>Factures générées</td><td id="m-invoices"></td></tr>
+        <tr><td>Événement Carte Cadeau</td><td id="m-gift-event"></td></tr>
+        <tr><td>Bonus Carte Cadeau</td><td id="m-gift-bonus"></td></tr>
+        <tr><td>Commission Virement</td><td id="m-comm-payout"></td></tr>
+        <tr><td>Commission Carte Cadeau</td><td id="m-comm-gift"></td></tr>
+        <tr><td>Orientation des photos</td><td id="m-photo"></td></tr>
+        <tr><td>URL Avis Acheteur</td><td><a id="link-buyer" href="" target="_blank">Typeform Acheteur</a></td></tr>
+        <tr><td>URL Avis Vendeur</td><td><a id="link-seller" href="" target="_blank">Typeform Vendeur</a></td></tr>
+        <tr><td>Règles de publication</td><td><pre id="m-rules"></pre></td></tr>
+        <tr><td>Wallet ID</td><td id="m-wallet"></td></tr>
+        <tr><td>Address ID</td><td id="m-address"></td></tr>
+    </table>
+</div>
 
-                // Affichage dans la page
-                document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
-            } catch (error) {
-                document.getElementById('output').textContent = "Erreur : " + error.message;
-            }
+<script>
+    async function loadBrandData() {
+        try {
+            // L'APPEL API : On va chercher les infos sur ta route Vercel
+            const response = await fetch('/api/brands');
+            if (!response.ok) throw new Error("Impossible de récupérer l'API");
+            
+            const brand = await response.json();
+
+            // Remplissage des images et titres
+            document.getElementById('brand-logo').src = brand.logo_url;
+            document.getElementById('brand-logo').style.display = 'block';
+            document.getElementById('brand-title').textContent = brand.shop_name;
+            document.getElementById('brand-banner').src = brand.banner_url;
+            document.getElementById('brand-banner').style.display = 'block';
+
+            // Remplissage du tableau ligne par ligne
+            document.getElementById('m-id').textContent = brand.id;
+            document.getElementById('m-created').textContent = brand.created_at;
+            document.getElementById('m-updated').textContent = brand.updated_at;
+            document.getElementById('m-name').textContent = brand.name;
+            document.getElementById('m-code').textContent = brand.code;
+            document.getElementById('m-siren').textContent = brand.siren;
+            document.getElementById('m-company').textContent = brand.company;
+            document.getElementById('m-type').textContent = brand.type;
+            document.getElementById('m-capital').textContent = brand.capital;
+            document.getElementById('m-status').textContent = brand.status;
+            document.getElementById('m-tva').textContent = brand.tva;
+            document.getElementById('m-country').textContent = brand.country;
+            document.getElementById('m-currency').textContent = brand.currency;
+            
+            // Liens
+            document.getElementById('link-official').href = brand.official_site;
+            document.getElementById('link-official').textContent = brand.official_site;
+            document.getElementById('link-second').href = brand.second_hand_site;
+            document.getElementById('link-second').textContent = brand.second_hand_site;
+            
+            document.getElementById('m-shopify').textContent = brand.shopify;
+            document.getElementById('m-shopname').textContent = brand.shop_name;
+            document.getElementById('m-lang').textContent = brand.lang_default;
+            document.getElementById('m-langs').textContent = brand.langs;
+            document.getElementById('m-font-title').textContent = brand.title_font;
+            document.getElementById('m-font-text').textContent = brand.text_font;
+            document.getElementById('m-format-title').textContent = brand.title_format;
+            
+            // Couleurs
+            document.getElementById('m-color-light').innerHTML = `${brand.color_light} <span style="display:inline-block;width:20px;height:20px;background:${brand.color_light};border:1px solid #000;vertical-align:middle;margin-left:10px;"></span>`;
+            document.getElementById('m-color-dark').innerHTML = `${brand.color_dark} <span style="display:inline-block;width:20px;height:20px;background:${brand.color_dark};border:1px solid #000;vertical-align:middle;margin-left:10px;"></span>`;
+            
+            document.getElementById('m-invoices').textContent = brand.invoices;
+            document.getElementById('m-gift-event').textContent = brand.gift_card_event;
+            document.getElementById('m-gift-bonus').textContent = brand.gift_card_bonus;
+            document.getElementById('m-comm-payout').textContent = brand.payout_commission;
+            document.getElementById('m-comm-gift').textContent = brand.gift_card_commission;
+            document.getElementById('m-photo').textContent = brand.photo_orientation;
+            
+            document.getElementById('link-buyer').href = brand.buyer_review_url;
+            document.getElementById('link-seller').href = brand.seller_review_url;
+            document.getElementById('m-rules').textContent = brand.rules;
+            document.getElementById('m-wallet').textContent = brand.wallet_id;
+            document.getElementById('m-address').textContent = brand.address_id;
+
+            // Masquer le chargement et afficher le tableau
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('brand-table').style.display = 'table';
+
+        } catch (error) {
+            document.getElementById('loader').textContent = "Erreur de chargement : " + error.message;
+            document.getElementById('loader').style.color = 'red';
         }
+    }
 
-        // Lancer l'appel au chargement de la page
-        fetchData();
-    </script>
+    // Lancer la fonction
+    loadBrandData();
+</script>
 </body>
 </html>

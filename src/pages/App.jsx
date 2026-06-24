@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom' 
 import './App.css'
 
@@ -43,7 +43,7 @@ const translations = {
     title: "Segui il mio pacco",
     subtitle: "Inserisci il tuo numero di tracciamento per conoscere lo stato del tuo ordine",
     placeholder: "Ex : FR123456789",
-    btnSearch: "Seguire",
+    btnSearch: "Segruire",
     alertEmpty: "Per favore inserisci un numero di tracciamento.",
     errorUnrecognized: "Numero di tracciamento non riconosciuto. Controlla il dato.",
     btnBack: "← Torna alla ricerca",
@@ -65,7 +65,7 @@ const translations = {
   },
 };
 
-function App() {
+export default function App() {
   const [trackingNumber, setTrackingNumber] = useState('');
   const [lang, setLang] = useState('fr');
   const [error, setError] = useState('');
@@ -77,6 +77,7 @@ function App() {
   const t = translations[lang];
   const navigate = useNavigate();
   const location = useLocation(); 
+
   useEffect(() => {
     if (location.state && location.state.error) {
       setError(location.state.error);
@@ -151,7 +152,6 @@ function App() {
     return null;
   };
   
-
   return (
     <div className="app-container">
       
@@ -223,5 +223,3 @@ function App() {
     </div>
   )
 }
-
-export default App;

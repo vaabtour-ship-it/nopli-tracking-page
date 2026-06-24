@@ -7,7 +7,6 @@ function MarqueBResult() {
 
   const currentLang = localStorage.getItem('appLang') || 'fr';
   
-  // Utilise en priorité l'ID de l'URL brute
   const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "SPD-9942-X";
 
   const content = {
@@ -112,7 +111,6 @@ function MarqueBResult() {
             }}>
               SPIDER
             </h2>
-            {/* CORRECTION : Remplacement de t.subtitle qui n'existait pas par t.title */}
             <p style={{ color: '#aaa', fontSize: '14px', letterSpacing: '0.5px', margin: '0' }}>
               {t.title}
             </p>

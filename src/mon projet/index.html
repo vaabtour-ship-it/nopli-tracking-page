@@ -11,7 +11,6 @@
     <script>
         async function fetchData() {
             try {
-                // On appelle les deux routes de manière relative
                 const [resUsers, resProducts] = await Promise.all([
                     fetch('/api/users'),
                     fetch('/api/products')
@@ -20,14 +19,11 @@
                 const users = await resUsers.json();
                 const products = await resProducts.json();
 
-                // Affichage dans la page
                 document.getElementById('output').textContent = JSON.stringify({ users, products }, null, 2);
             } catch (error) {
                 document.getElementById('output').textContent = "Erreur : " + error.message;
             }
         }
-
-        // Lancer l'appel au chargement de la page
         fetchData();
     </script>
 </body>

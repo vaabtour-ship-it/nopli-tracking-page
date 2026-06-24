@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom' // <-- CORRECTION : Ajout de useLocation ici
+import { useNavigate, useLocation } from 'react-router-dom' 
 import './App.css'
 
 const translations = {
@@ -76,13 +76,10 @@ function App() {
 
   const t = translations[lang];
   const navigate = useNavigate();
-  const location = useLocation(); // <-- CORRECTION : Stockage de la localisation de la page
-
-  // CORRECTION : Effet qui écoute si le GestionnaireSuivi renvoie une erreur
+  const location = useLocation(); 
   useEffect(() => {
     if (location.state && location.state.error) {
       setError(location.state.error);
-      // On nettoie l'historique pour éviter que l'erreur reste au rafraîchissement
       navigate(location.pathname, { replace: true, state: {} });
     }
   }, [location, navigate]);

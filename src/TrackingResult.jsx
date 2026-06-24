@@ -7,7 +7,6 @@ function TrackingResult() {
 
   const currentLang = localStorage.getItem('appLang') || 'fr';
   
-  // Utilise en priorité l'ID de l'URL brute
   const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "AT-74291-FR";
 
   const content = {
@@ -109,7 +108,6 @@ function TrackingResult() {
             </h2>
             <div style={{ width: '40px', height: '1px', background: '#c8a27c', margin: '0 auto 15px' }}></div>
             <h3 style={{ fontSize: '24px', fontWeight: '500', margin: '0 0 5px 0' }}>{t.title}</h3>
-            {/* CORRECTION : Suppression de t.subtitle (indéfini) pour éviter l'affichage vide */}
           </div>
 
           <div className="tracking-number" style={{ 

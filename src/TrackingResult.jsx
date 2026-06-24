@@ -1,14 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom'; // <-- Ajout de useParams
+import { useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 
 function TrackingResult() {
   const navigate = useNavigate();
-  const { suiviId } = useParams(); // <-- On récupère le numéro depuis l'URL si existant
+  const { suiviId } = useParams();
 
-  // Récupération de la langue et du numéro de suivi
   const currentLang = localStorage.getItem('appLang') || 'fr';
   
-  // Priorité à l'URL, sinon localStorage, sinon valeur par défaut
   const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "AT-74291-FR";
 
   const content = {
@@ -70,7 +68,6 @@ function TrackingResult() {
     <div className="app-container">
       <section id="center">
         
-        {/* Bouton Retour élégant */}
         <div style={{ width: '100%', maxWidth: '650px', textAlign: 'left' }}>
           <button 
             className="btn-suivre" 
@@ -89,7 +86,6 @@ function TrackingResult() {
           </button>
         </div>
 
-        {/* Conteneur principal style Tuffery */}
         <div className="tracking-card" style={{
           background: '#fcfbfa', 
           borderTop: '5px solid #1a2a40', 
@@ -99,7 +95,6 @@ function TrackingResult() {
           boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
         }}>
           
-          {/* En-tête de la carte */}
           <div style={{ marginBottom: '30px', textAlign: 'center' }}>
             <h2 style={{ 
               fontFamily: 'serif', 
@@ -113,10 +108,8 @@ function TrackingResult() {
             </h2>
             <div style={{ width: '40px', height: '1px', background: '#c8a27c', margin: '0 auto 15px' }}></div>
             <h3 style={{ fontSize: '24px', fontWeight: '500', margin: '0 0 5px 0' }}>{t.title}</h3>
-            <p style={{ color: '#666', fontSize: '14px', fontStyle: 'italic' }}>{t.subtitle}</p>
           </div>
 
-          {/* Numéro de suivi style étiquette de jean */}
           <div className="tracking-number" style={{ 
             background: '#f3ece5', 
             color: '#7c533c', 
@@ -131,12 +124,10 @@ function TrackingResult() {
             {t.labelNum} <span style={{ fontFamily: 'monospace', fontSize: '15px' }}>{trackingNumber}</span>
           </div>
 
-          {/* Barre de progression Bleu Denim */}
           <div className="progress" style={{ background: '#e0e5eb', height: '6px', borderRadius: '3px' }}>
             <div className="progress-bar" style={{ background: '#1a2a40', width: '70%', borderRadius: '3px' }}></div>
           </div>
 
-          {/* Étapes de fabrication et livraison */}
           <div className="steps" style={{ marginTop: '25px' }}>
             <div className="step">
               <div className="circle" style={{ background: '#1a2a40', color: '#fff', border: 'none' }}>✓</div>
@@ -159,7 +150,6 @@ function TrackingResult() {
             </div>
           </div>
 
-          {/* Statut détaillé */}
           <div className="status" style={{ 
             background: '#eef2f6', 
             color: '#1a2a40', 

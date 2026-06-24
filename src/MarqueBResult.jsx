@@ -1,14 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom'; // <-- Ajout de useParams
+import { useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 
 function MarqueBResult() {
   const navigate = useNavigate();
-  const { suiviId } = useParams(); // <-- On récupère le numéro depuis l'URL si existant
+  const { suiviId } = useParams();
 
-  // Récupération de la langue et du numéro de suivi
   const currentLang = localStorage.getItem('appLang') || 'fr';
   
-  // Priorité à l'URL, sinon localStorage, sinon valeur par défaut
   const trackingNumber = suiviId || localStorage.getItem('trackingNumber') || "SPD-9942-X";
 
   const content = {
@@ -50,7 +48,7 @@ function MarqueBResult() {
       step2: "Preparazione e Confezionamento",
       step3: "Spedito/In Transito",
       step4: "Raggiungiti/Obiettivo Raggiunto",
-      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal nostro corriere."
+      status: "Il tuo pacco ha lasciato il centro di smistamento. Attualmente è gestito dal notre corriere."
     },
     de: {
       back: "← Zurück zur Suche",
@@ -60,16 +58,16 @@ function MarqueBResult() {
       step2: "Vorbereitung & Verpackung",
       step3: "Versendet / Unterwegs",
       step4: "Geliefert / Ziel erreicht",
-      status: "DIhr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem Zusteller bearbeitet."
+      status: "Ihr Paket hat das Sortierzentrum verlassen. Es wird derzeit von unserem Zusteller bearbeitet."
     },
   };
 
   const t = content[currentLang] || content.fr;
+
   return (
     <div className="app-container">
       <section id="center">
         
-        {/* Bouton Retour Cyber/Futuriste */}
         <div style={{ width: '100%', maxWidth: '650px', textAlign: 'left' }}>
           <button 
             className="btn-suivre" 
@@ -92,7 +90,6 @@ function MarqueBResult() {
           </button>
         </div>
 
-        {/* Carte de Suivi Premium Spider */}
         <div className="tracking-card" style={{
           background: '#0d0d11', 
           border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -103,7 +100,6 @@ function MarqueBResult() {
           boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
         }}>
           
-          {/* En-tête de la carte */}
           <div style={{ marginBottom: '35px', textAlign: 'center' }}>
             <h2 style={{ 
               fontFamily: 'Impact, sans-serif', 
@@ -115,12 +111,11 @@ function MarqueBResult() {
             }}>
               SPIDER
             </h2>
-            <p style={{ color: '#0c0c0d', fontSize: '14px', letterSpacing: '0.5px', margin: '0' }}>
-              {t.subtitle}
+            <p style={{ color: '#aaa', fontSize: '14px', letterSpacing: '0.5px', margin: '0' }}>
+              {t.title}
             </p>
           </div>
 
-          {/* Numéro de suivi style Bloc Technique militaire */}
           <div className="tracking-number" style={{ 
             background: '#16161f', 
             color: '#ffffff', 
@@ -137,12 +132,10 @@ function MarqueBResult() {
             {t.labelNum} <span style={{ color: '#ff003c', fontFamily: 'monospace', fontSize: '15px' }}>{trackingNumber}</span>
           </div>
 
-          {/* Barre de progression Tech */}
           <div className="progress" style={{ background: '#22222b', height: '4px', borderRadius: '2px' }}>
             <div className="progress-bar" style={{ background: '#ff003c', width: '75%', borderRadius: '2px', boxShadow: '0 0 10px #ff003c' }}></div>
           </div>
 
-          {/* Étapes du déploiement */}
           <div className="steps" style={{ marginTop: '30px', listStyle: 'none', padding: '0' }}>
             <div className="step" style={{ listStyleType: 'none' }}>
               <div className="circle" style={{ background: '#ff003c', color: '#fff', border: 'none', boxShadow: '0 0 8px #ff003c' }}>✓</div>
@@ -165,7 +158,6 @@ function MarqueBResult() {
             </div>
           </div>
 
-          {/* Section Statut Militaire/Tech */}
           <div className="status" style={{ 
             background: 'rgba(255, 255, 255, 0.03)', 
             color: '#ffffff', 
